@@ -1,0 +1,26 @@
+[
+  {"id": "upload","type": "WebElement","by": "xpath","expr": "//label[@role='button']/span/input","description": "upload files"},
+  {"id": "leftbar.btn","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='?']","description": "display"},
+  {"id": "leftbar.display","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='Display']","description": "display"},
+  {"id": "MarginLine","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='Margin Line']","description": "margin line"},
+  {"id": "leftbar.occlusionProximity","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='Occlusion Proximity']","description": "Occlusion Proximity"},
+  {"id": "leftbar.orientationAdjustment","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='Orientation Adjustment']","description": "Orientation Adjustment"},
+  {"id": "leftbar.gallery","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='Gallery']","description": "Gallery"},
+  {"id": "leftbar.imageInformation","type": "WebElement","by": "xpath","expr": "//button[@title='Image Information']","description": "Image Information"},
+  {"id": "leftbar.about","type": "WebElement","by": "xpath","expr": "//button[@title='About']","description": "About"},
+
+  {"id": "topbar.btn","type": "WebElement","by": "xpath","expr": "//button[@title='?']","description": "topbar buttons"},
+  {"id": "topbar.btnFront","type": "WebElement","by": "xpath","expr": "//button[@title='Front']","description": "Front"},
+  {"id": "topbar.btnBack","type": "WebElement","by": "xpath","expr": "//button[@title='Back']","description": "Back"},
+  {"id": "topbar.btnSnapshot","type": "WebElement","by": "xpath","expr": "//button[@title='Snapshot']","description": "Snapshot"},
+  {"id": "topbar.btnReset","type": "WebElement","by": "xpath","expr": "//button[@title='Reset']","description": "Reset"},
+
+
+  {"id": "gallery.title","type": "WebElement","by": "xpath","expr": "//b[text()='Gallery']","description": "Gallery Title"},
+  {"id": "gallery.delete","type": "WebElement","by": "xpath","expr": "//button[@title='Delete']","description": "Delete"},
+
+  {"id": "display.title","type": "WebElement","by": "xpath","expr": "//b[text()='Display']","description": "Gallery Title"},
+
+
+  {"id": "canvas.it","type": "WebElement","by": "xpath","expr": "//div/canvas","description": "canvas"}
+]

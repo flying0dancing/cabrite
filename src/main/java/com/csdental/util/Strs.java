@@ -1,0 +1,96 @@
+package com.csdental.util;
+
+import org.apache.commons.lang3.StringUtils;
+
+public class Strs {
+    public static String empty(String str){
+        if(isEmpty(str)){
+            return "";
+        }
+        return str;
+    }
+    public static Boolean isEmpty(String str){
+        if(str==null || str.equals("") || str.trim().equals("")){
+            return true;
+        }
+        return false;
+    }
+
+    public static Boolean isEmptyStrings(String... strings){
+
+        if(strings==null){
+            return true;
+        }else {
+            int len=strings.length;
+            if(len==0){
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * revise/uniform file path separator, let file's separator followed OS's.
+     * @param path
+     * @return
+     */
+    public static String reviseFilePath(String path)
+    {
+        if(StringUtils.isNotBlank(path)){
+            path=path.replace("\"", "");
+
+            if(System.getProperty("file.separator").equals("/")){
+                path=path.replace("\\\\", "/");
+                path=path.replaceAll("/+", "/");
+            }else
+            {
+                path=path.replace("/", "\\");
+                path=path.replaceAll("\\\\+", "\\\\");
+            }
+            if(path.contains(" "))
+            {
+                //path="\""+path+"\"";
+            }
+        }
+        return path;
+    }
+
+    /***
+     * remove last separator of path if it has.
+     * @param path
+     * @return
+     */
+    public static String removeLastSlash(String path) {
+        if (StringUtils.isNotBlank(path)) {
+            path = path.replace("\"", "");
+            if (path.endsWith("/") || path.endsWith("\\")) {
+                path = path.substring(0, path.length() - 1);
+            }
+        }
+        return path;
+    }
+    /***
+     * get parent path, if it is the top folder, return itself
+     * @param path
+     * @return
+     */
+    public static String getParentPath(String path) {
+        if (StringUtils.isNotBlank(path)) {
+            path = removeLastSlash(path);
+            int lastSlash = path.lastIndexOf("\\") == -1 ? path.lastIndexOf("/") : path.lastIndexOf("\\");//get parent path
+            if (lastSlash > 0) {
+                path = path.substring(0, lastSlash) + System.getProperty("file.separator");
+            } else {
+                path = path + System.getProperty("file.separator");
+            }
+        }
+        return path;
+    }
+
+    public static String projectParent(){
+        return getParentPath(System.getProperty("user.dir"));
+    }
+
+    public static String projectPath(){
+        return System.getProperty("user.dir")+System.getProperty("file.separator");
+    }
+}
