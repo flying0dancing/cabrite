@@ -5,10 +5,13 @@ public interface IProp {
 
     String RESULT_FOLDER=Strs.projectPath()+PropHelper.getProperty("path.result.folder");
     String SCREENSHOT_FOLDER=RESULT_FOLDER+PropHelper.getProperty("path.screenshot.folder");
-    String LOCATORS_MESHVIEWER=PropHelper.getProperty("locators.meshviewer");
 
-    String PRODUCT_MESHVIEWER="meshviewer";
     String TEST_SOURCE=PropHelper.getProperty("test.source");
-    String TEST_SOURCE_MESHVIEWER=PropHelper.getProperty("test.source")+PRODUCT_MESHVIEWER+"/";
     String SCREENSHOT_TYPE=".png";
+
+    //product meshviewer
+    String LOCATORS_MESHVIEWER=PropHelper.getProperty("locators.meshviewer");
+    String PRODUCT_MESHVIEWER="meshviewer";
+    String TEST_SOURCE_MESHVIEWER=TEST_SOURCE+PRODUCT_MESHVIEWER+"/";
+
 }

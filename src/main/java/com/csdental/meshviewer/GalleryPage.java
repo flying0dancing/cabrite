@@ -15,10 +15,10 @@ public class GalleryPage extends BasePage{
     }
 
     public Boolean isThePage() throws Exception {
-        waitThat(3000);
+        waitThat();
         IWebElementWrapper elt=element("gallery.title");
         String title=elt.getText();
-        if(title.equals("Display")){
+        if(title.equals("Gallery")){
             logger.info("page title is {}",title);
             return true;
         }
@@ -34,4 +34,5 @@ public class GalleryPage extends BasePage{
             return 0;
         }
     }
+
 }

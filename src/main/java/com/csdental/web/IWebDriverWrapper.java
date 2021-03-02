@@ -27,6 +27,7 @@ public interface IWebDriverWrapper {
     IWebElementWrapper element(WebElement webElement);
     Object executeScript(final String script, final Object... args);
     Object executeAsyncScript(final String script, final Object... args);
+    void getConsoleInfo();
 
-
+    IWebSelectWrapper select(Locator locator);
 }

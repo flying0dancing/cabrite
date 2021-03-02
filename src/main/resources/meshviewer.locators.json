@@ -19,8 +19,12 @@
   {"id": "gallery.title","type": "WebElement","by": "xpath","expr": "//b[text()='Gallery']","description": "Gallery Title"},
   {"id": "gallery.delete","type": "WebElement","by": "xpath","expr": "//button[@title='Delete']","description": "Delete"},
 
-  {"id": "display.title","type": "WebElement","by": "xpath","expr": "//b[text()='Display']","description": "Gallery Title"},
+  {"id": "display.title","type": "WebElement","by": "xpath","expr": "//b[text()='Display']","description": "display Title"},
 
+  {"id": "orientationAdjustment.title","type": "WebElement","by": "xpath","expr": "//b[text()='Orientation Adjustment']","description": "Orientation Adjustment Title"},
+
+  {"id": "orientationAdjustment.rotationStep","type": "WebElement","by": "id","expr": "demo-simple-select-filled","description": "orientationAdjustment.rotationStep"},
+  {"id": "orientationAdjustment.rotationStepUl","type": "WebElement","by": "xpath","expr": "//ul[@role='listbox'][@aria-labelledby='demo-simple-select-filled-label']","description": "orientationAdjustment.rotationStepUl"},
 
   {"id": "canvas.it","type": "WebElement","by": "xpath","expr": "//div/canvas","description": "canvas"}
 ]

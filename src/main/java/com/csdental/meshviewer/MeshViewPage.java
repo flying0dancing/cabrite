@@ -19,7 +19,7 @@ public class MeshViewPage extends BasePage{
     }
 
     public Boolean isThePage(){
-        waitThat(3000);
+        waitThat();
         logger.info("page title is {}",title);
         return true;
     }
@@ -31,10 +31,10 @@ public class MeshViewPage extends BasePage{
         return new DisplayPage(webDriverWrapper);
     }
 
-    public MeshViewPage clickOrientationAdjustment() throws Exception {
+    public OrientationAdjustment clickOrientationAdjustment() throws Exception {
         IWebElementWrapper elt=element("leftbar.orientationAdjustment");
         elt.click();
-        return this;
+        return new OrientationAdjustment(webDriverWrapper);
     }
 
     public GalleryPage clickGallery() throws Exception {
@@ -45,44 +45,72 @@ public class MeshViewPage extends BasePage{
 
     /**
      * check top bar is displayed, if one button of top bar is missing return false.
+     * default displayed buttons are {"Front","Back","Top","Bottom","Right","Left","Zoom Fit","Snapshot","True Color","Light","Reset"};
      * @return
      * @throws Exception
      */
     public Boolean isDisplayedTopBar() throws Exception {
-        String[] items=new String[]{"Front","Back","Top","Bottom","Zoom Fit"};
+        String[] items=new String[]{"Front","Back","Top","Bottom","Right","Left","Zoom Fit","Snapshot","True Color","Light","Reset"};
+        //String[] items=new String[]{"Front","Back","Top","Bottom","Right","Left","Zoom Fit","Snapshot","True Color","Reset"};
         return isDisplayed("topbar.btn", items);
     }
+
+    /**
+     * check top bar is displayed, if one button of top bar provided is missing return false.
+     * @param title value in {"Front","Back","Top","Bottom","Right","Left","Zoom Fit","Snapshot","True Color","Light","Reset"}
+     * @return
+     * @throws Exception
+     */
+    public Boolean isDisplayedTopBar(String... title) throws Exception {
+        return isDisplayed("topbar.btn", title);
+    }
+
+    public Boolean isPresentedTopBar() throws Exception {
+        String[] items=new String[]{"Front","Back","Top","Bottom","Right","Left","Zoom Fit","Snapshot","True Color","Light","Reset"};
+        return isPresent("topbar.btn", items);
+    }
+
+    /**
+     * check top bar is presented, if one button of top bar provided is missing return false.
+     * @param title value in {"Front","Back","Top","Bottom","Right","Left","Zoom Fit","Snapshot","True Color","Light","Reset"}
+     * @return
+     * @throws Exception
+     */
+    public Boolean isPresentedTopBar(String... title) throws Exception {
+        return isPresent("topbar.btn", title);
+    }
+
+    /**
+     * check top bar is enabled, if one button of top bar is missing return false.
+     * default displayed buttons are {"Front","Back","Top","Bottom","Right","Left","Zoom Fit","Snapshot","True Color","Reset"};
+     * "Light" button is disabled not include in this function.
+     * @return
+     * @throws Exception
+     */
+    public Boolean isEnabledTopBar() throws Exception {
+        String[] items=new String[]{"Front","Back","Top","Bottom","Right","Left","Zoom Fit","Snapshot","True Color","Reset"};
+        return isEnabled("topbar.btn", items);
+    }
+    /**
+     * check top bar is enabled, if one button of top bar is missing return false.
+     * default displayed buttons are {"Front","Back","Top","Bottom","Right","Left","Zoom Fit","Snapshot","True Color","Light","Reset"};
+     * "Light" button is disabled not include in this function.
+     * @return
+     * @throws Exception
+     */
+    public Boolean isEnabledTopBar(String... title) throws Exception {
+        return isEnabled("topbar.btn", title);
+    }
+    
+    /**
+     * check left bar is displayed, if one button of bar is missing return false.
+     * default displayed buttons are {"Display","Orientation Adjustment","Gallery"};
+     * @return
+     * @throws Exception
+     */
     public boolean isDisplayedLeftBar() throws Exception {
         String[] items=new String[]{"Display","Orientation Adjustment","Gallery"};
         return isDisplayed("leftbar.btn", items);
-    }
-
-    public Boolean isDisplayed(String element, String[] items) throws Exception {
-        Boolean flag=true;
-        for (String item:items) {
-            IWebElementWrapper elt=element(element,item);
-            if(elt.isDisplayed() && elt.isEnabled()){
-                logger.info("button {} on top bar is enabled.",item);
-            }else {
-                logger.info("button {} on top bar isn't enabled.",item);
-                flag=false;
-            }
-        }
-        return flag;
-    }
-    public Boolean isPresentedTopBar() throws Exception {
-        Boolean flag=true;
-        String[] items=new String[]{"Front","Back","Top","Bottom","Zoom Fit"};
-        for (String item:items) {
-            IWebElementWrapper elt=element("topbar.btn",item);
-            if(elt.isPresent()){
-                logger.info("button {} on top bar is present.",item);
-            }else {
-                logger.info("button {} on top bar isn't present.",item);
-                flag=false;
-            }
-        }
-        return flag;
     }
 
 
@@ -112,22 +140,20 @@ public class MeshViewPage extends BasePage{
     }
 
     public void uploadFile(String filefullname) throws Exception {
+        logger.info("upload file {}",filefullname);
         String js="document.getElementsByTagName('input')[0].removeAttribute('hidden');";
         executeScript(js);
         IWebElementWrapper elt=element("upload");
         elt.sendKeys(filefullname);
-        loading(3000);
-        logger.info("upload:"+filefullname);
+        loading();
     }
 
     public Boolean fileUploaded() throws Exception {
-        if(isDisplayedOcclusionProximity()){
-            return true;
-        }
-        return false;
+        return isDisplayedOcclusionProximity();
     }
 
     public void moveMesh() throws Exception {
+        logger.info("move mesh from (0,0) to (200,200)");
         element("canvas.it").canvas(0,0,200,200);
     }
 

@@ -12,7 +12,7 @@ public class DisplayPage extends BasePage{
         super(webDriverWrapper);
     }
     public Boolean isThePage() throws Exception {
-        waitThat(5000L);
+        waitThat();
         IWebElementWrapper elt=element("display.title");
         String title=elt.getText();
         if(title.equals("Gallery")){

@@ -47,7 +47,7 @@ public class WebElementWrapper implements IWebElementWrapper {
 
     }
     private WebElement element(){
-        logger.info(locator.toString());
+        logger.debug("locator {}",locator);
         List<WebElement> elts=driver.findElements(by);
         if(elts==null || elts.size()==0){
             return null;
@@ -116,20 +116,21 @@ public class WebElementWrapper implements IWebElementWrapper {
 
     }
     public IWebElementWrapper type(final CharSequence... value) {
-        logger.info("typing {} on {}", StringUtils.join(value), element);
+        logger.debug("typing {} on {}", StringUtils.join(value), element);
         wait.until(ExpectedConditions.visibilityOf(element)).sendKeys(value);
         return this;
     }
     public IWebElementWrapper clear() {
-        logger.info("clearing value on " + element);
+        logger.debug("clearing value on " + element);
         wait.until(ExpectedConditions.visibilityOf(element)).clear();
         return this;
     }
     public void click(){
         if(locator!=null){
-            logger.info("clicking {}",locator);
+            logger.debug("clicking {}",locator);
         }
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        webDriverWrapper.getConsoleInfo();
     }
 
     public String getText(){
@@ -150,7 +151,7 @@ public class WebElementWrapper implements IWebElementWrapper {
         try {
             scrFile = element.getScreenshotAs(OutputType.FILE);
             File destFile= FileUtil.createNewFile(filename);
-            logger.info("element screenshot saved:"+destFile.getPath());
+            logger.debug("element screenshot saved:"+destFile.getPath());
             FileUtils.copyFile(scrFile, destFile);
         } catch (IOException e) {
             BuildStatus.getInstance().recordError();
