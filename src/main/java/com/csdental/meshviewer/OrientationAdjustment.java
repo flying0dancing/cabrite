@@ -46,7 +46,13 @@ public class OrientationAdjustment  extends BasePage{
         return null;
     }
 
-    public String getAngle(String xyz){
+    /**
+     *
+     * @param xyz
+     * @param index [0,1,2]
+     * @return
+     */
+    public String getAngle(String xyz,int index){
         return null;
     }
     public String clickAnglePlus(){
