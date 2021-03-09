@@ -64,5 +64,17 @@ public class Helper {
         return list;
     }
 
+    /**
+     * get a string by reporting style
+     *
+     * @param source
+     * @param text
+     * @return report string
+     */
+    public static String getTestReportStyle(String source, String text) {
+        return "<a href = 'javascript:void(0)' onclick=\"window.open ('" + source
+                + "','newwindow','height=600,width=800,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no')\">"
+                + text + "</a>";
+    }
 
 }

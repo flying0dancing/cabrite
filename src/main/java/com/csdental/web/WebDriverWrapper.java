@@ -23,7 +23,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -180,16 +179,17 @@ public class WebDriverWrapper implements IWebDriverWrapper{
 
     private String takeScreenshotAs(String filename){
         File scrFile = null;
+        File destFile=null;
         try {
             scrFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
-            File destFile=FileUtil.createNewFile(filename);
+            destFile=FileUtil.createNewFile(filename);
             logger.debug("screenshot saved:"+destFile.getPath());
             FileUtils.copyFile(scrFile, destFile);
         } catch (IOException e) {
             BuildStatus.getInstance().recordError();
             logger.error(e.getMessage(),e);
         }
-        return scrFile.isFile()?scrFile.getPath():null;
+        return destFile.isFile()?destFile.getPath():null;
     }
 
 
@@ -204,7 +204,7 @@ public class WebDriverWrapper implements IWebDriverWrapper{
     public IWebElementWrapper element(WebElement webElement){
         return new WebElementWrapper(this,webElement);
     }
-    public IWebSelectWrapper select(Locator locator){return new WebSelectWrapper(this,locator);}
+
     public Object executeScript(final String script, final Object... args){
         return js.executeScript(script,args);
     }

@@ -29,5 +29,4 @@ public interface IWebDriverWrapper {
     Object executeAsyncScript(final String script, final Object... args);
     void getConsoleInfo();
 
-    IWebSelectWrapper select(Locator locator);
 }

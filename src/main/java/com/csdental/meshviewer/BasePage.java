@@ -3,7 +3,6 @@ package com.csdental.meshviewer;
 import com.csdental.util.IProp;
 import com.csdental.web.IWebDriverWrapper;
 import com.csdental.web.IWebElementWrapper;
-import com.csdental.web.IWebSelectWrapper;
 import com.csdental.web.LocatorFactory;
 import com.csdental.web.pojo.Locator;
 import org.slf4j.Logger;
@@ -31,10 +30,10 @@ public class BasePage {
         return webDriverWrapper.element(locator);
     }
 
-    public IWebSelectWrapper select(String id, String... replacements){
+    /*public IWebSelectWrapper select(String id, String... replacements){
         Locator locator=locatorFactory.getLocatorById( id,replacements);
         return webDriverWrapper.select(locator);
-    }
+    }*/
     public void waitThat(){
         waitThat(sleepInMillis);
     }

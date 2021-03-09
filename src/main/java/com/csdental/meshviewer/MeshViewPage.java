@@ -32,9 +32,16 @@ public class MeshViewPage extends BasePage{
     }
 
     public OrientationAdjustment clickOrientationAdjustment() throws Exception {
+        logger.info("click Orientation Adjustment tab on left bar");
         IWebElementWrapper elt=element("leftbar.orientationAdjustment");
         elt.click();
-        return new OrientationAdjustment(webDriverWrapper);
+        loading();
+        OrientationAdjustment orientationAdjustment=new OrientationAdjustment(webDriverWrapper);
+        if(!orientationAdjustment.isThePage()){
+            elt.click();
+            loading();
+        }
+        return orientationAdjustment;
     }
 
     public GalleryPage clickGallery() throws Exception {
@@ -154,7 +161,14 @@ public class MeshViewPage extends BasePage{
 
     public void moveMesh() throws Exception {
         logger.info("move mesh from (0,0) to (200,200)");
-        element("canvas.it").canvas(0,0,200,200);
+        element("canvas.it").canvas_move(0,0,200,200);
     }
 
+    public Boolean fileUploadDlgExist() throws Exception {
+        IWebElementWrapper elt=element("uploadDlg");
+        if(elt.isPresent()){
+            return true;
+        }
+        return false;
+    }
 }

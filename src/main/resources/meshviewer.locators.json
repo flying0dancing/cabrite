@@ -1,10 +1,11 @@
 [
+  {"id": "uploadDlg","type": "WebElement","by": "xpath","expr": "//div[text()='Click this button or drag files here to import the data']","description": "upload files"},
   {"id": "upload","type": "WebElement","by": "xpath","expr": "//label[@role='button']/span/input","description": "upload files"},
   {"id": "leftbar.btn","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='?']","description": "display"},
   {"id": "leftbar.display","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='Display']","description": "display"},
   {"id": "MarginLine","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='Margin Line']","description": "margin line"},
   {"id": "leftbar.occlusionProximity","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='Occlusion Proximity']","description": "Occlusion Proximity"},
-  {"id": "leftbar.orientationAdjustment","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='Orientation Adjustment']","description": "Orientation Adjustment"},
+  {"id": "leftbar.orientationAdjustment","type": "WebElement","by": "name","expr": "toolbar.btnOrientationAdjustment","description": "Orientation Adjustment"},
   {"id": "leftbar.gallery","type": "WebElement","by": "xpath","expr": "//div[@aria-label='tool button group']/button[@title='Gallery']","description": "Gallery"},
   {"id": "leftbar.imageInformation","type": "WebElement","by": "xpath","expr": "//button[@title='Image Information']","description": "Image Information"},
   {"id": "leftbar.about","type": "WebElement","by": "xpath","expr": "//button[@title='About']","description": "About"},
@@ -21,10 +22,16 @@
 
   {"id": "display.title","type": "WebElement","by": "xpath","expr": "//b[text()='Display']","description": "display Title"},
 
-  {"id": "orientationAdjustment.title","type": "WebElement","by": "xpath","expr": "//b[text()='Orientation Adjustment']","description": "Orientation Adjustment Title"},
+  {"id": "orientationAdjustment.title","type": "WebElement","by": "xpath","expr": "//div/h5/b[text()='Orientation Adjustment']","description": "Orientation Adjustment Title"},
+  {"id": "orientationAdjustment.rotationOperate","type": "WebElement","by": "xpath","expr": "//div[h6/text()='?']/following-sibling::div[?]/button","description": "Orientation Adjustment Angle X Y Z Increase Decrease Reset"},
+  {"id": "orientationAdjustment.rotationAngle","type": "WebElement","by": "xpath","expr": "//div[h6/text()='?']/following-sibling::div[?]//input","description": "Orientation Adjustment Angle X Y Z Angle value"},
+  {"id": "orientationAdjustment.movementOperate","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[7]/div[?]/button","description": "Orientation Adjustment distance Z Increase Decrease Reset"},
+  {"id": "orientationAdjustment.movementDistance","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[7]/div[2]//input","description": "Orientation Adjustment distance Z distance value"},
 
   {"id": "orientationAdjustment.rotationStep","type": "WebElement","by": "id","expr": "demo-simple-select-filled","description": "orientationAdjustment.rotationStep"},
   {"id": "orientationAdjustment.rotationStepUl","type": "WebElement","by": "xpath","expr": "//ul[@role='listbox'][@aria-labelledby='demo-simple-select-filled-label']","description": "orientationAdjustment.rotationStepUl"},
-
+  {"id": "orientationAdjustment.movementStep","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[6]//div[@id='demo-simple-select-filled']","description": "orientationAdjustment.movementStep"},
+  {"id": "orientationAdjustment.movementStepUl","type": "WebElement","by": "xpath","expr": "//ul[@role='listbox'][@aria-labelledby='demo-simple-select-filled-label']","description": "orientationAdjustment.movementStepUl"},
+  {"id": "orientationAdjustment.resetAll","type": "WebElement","by": "xpath","expr": "//button[span/text()='Reset All Adjustments']","description": "orientationAdjustment Reset All Adjustments "},
   {"id": "canvas.it","type": "WebElement","by": "xpath","expr": "//div/canvas","description": "canvas"}
 ]

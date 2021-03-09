@@ -38,7 +38,7 @@ public class WebDriverFactory {
     private DesiredCapabilities setCapabilitiesChrome(){
         DesiredCapabilities capabilities=DesiredCapabilities.chrome();
         capabilities.setCapability(CapabilityType.BROWSER_VERSION,"0.5");
-        setLogCapabilitiesChrome(capabilities);
+        //setLogCapabilitiesChrome(capabilities);
         return capabilities;
     }
     private DesiredCapabilities setLogCapabilitiesChrome(DesiredCapabilities capabilities){

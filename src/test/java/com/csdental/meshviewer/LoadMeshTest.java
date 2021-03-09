@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 @Test(groups={"smoke","function_test"})
 public class LoadMeshTest extends TestManager {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     public void checkUploadDCM() throws Exception {
         MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
         if(meshViewPage.isThePage()){
