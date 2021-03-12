@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import com.csdental.util.Helper;
+import com.csdental.util.IProp;
 import com.csdental.util.Strs;
 import com.csdental.web.pojo.Locator;
 import org.slf4j.Logger;
@@ -14,10 +15,14 @@ public class LocatorFactory {
     private List<Locator> locators;
     private String replacement_symbol="?";
 
-    public LocatorFactory(List<Locator> locators) {
+    /*private LocatorFactory(List<Locator> locators) {
         this.locators = locators;
+    }*/
+    private LocatorFactory(InputStream inputStream){setLocators(inputStream);}
+    private final static LocatorFactory locatorFactory_Meshviewer=new LocatorFactory(LocatorFactory.class.getClassLoader().getResourceAsStream(IProp.LOCATORS_MESHVIEWER));
+    public static LocatorFactory Meshviewer(){
+        return locatorFactory_Meshviewer;
     }
-    public LocatorFactory(InputStream inputStream){setLocators(inputStream);}
 
     public Locator getLocatorById(String id, String... replacements) {
         Locator locator=null;

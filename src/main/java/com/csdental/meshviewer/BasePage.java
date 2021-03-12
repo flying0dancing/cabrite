@@ -1,6 +1,5 @@
 package com.csdental.meshviewer;
 
-import com.csdental.util.IProp;
 import com.csdental.web.IWebDriverWrapper;
 import com.csdental.web.IWebElementWrapper;
 import com.csdental.web.LocatorFactory;
@@ -9,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class BasePage {
+public class BasePage implements IBasePage{
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public IWebDriverWrapper getWebDriverWrapper() {
@@ -25,7 +24,7 @@ public class BasePage {
         this.locatorFactory=locators();
     }
 
-    public IWebElementWrapper element(String id, String... replacements) throws Exception {
+    public IWebElementWrapper element(String id, String... replacements) {
         Locator locator=locatorFactory.getLocatorById( id,replacements);
         return webDriverWrapper.element(locator);
     }
@@ -60,15 +59,15 @@ public class BasePage {
     }
 
     public LocatorFactory locators(){
-        return new LocatorFactory(this.getClass().getClassLoader().getResourceAsStream(IProp.LOCATORS_MESHVIEWER));
+        return LocatorFactory.Meshviewer();
     }
 
 
-    public Boolean isDisplayed(String element, String... items) throws Exception {
+    public Boolean isDisplayed(String element, String... items) {
         Boolean flag=true;
         for (String item:items) {
             IWebElementWrapper elt=element(element,item);
-            if(elt.isDisplayed() && elt.isEnabled()){
+            if(elt.isPresent() && elt.isDisplayed()){
                 logger.info("button {} on top bar is displayed.",item);
             }else {
                 logger.info("button {} on top bar isn't displayed.",item);
@@ -77,7 +76,8 @@ public class BasePage {
         }
         return flag;
     }
-    public Boolean isEnabled(String element, String... items) throws Exception {
+
+    public Boolean isEnabled(String element, String... items) {
         Boolean flag=true;
         for (String item:items) {
             IWebElementWrapper elt=element(element,item);
@@ -90,7 +90,7 @@ public class BasePage {
         }
         return flag;
     }
-    public Boolean isPresent(String element, String... items) throws Exception {
+    public Boolean isPresent(String element, String... items) {
         Boolean flag=true;
         for (String item:items) {
             IWebElementWrapper elt=element(element,item);
@@ -102,5 +102,10 @@ public class BasePage {
             }
         }
         return flag;
+    }
+
+    @Override
+    public Boolean isThePage() {
+        return false;
     }
 }

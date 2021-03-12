@@ -14,7 +14,7 @@ public class GalleryPage extends BasePage{
         super(webDriverWrapper);
     }
 
-    public Boolean isThePage() throws Exception {
+    public Boolean isThePage(){
         waitThat();
         IWebElementWrapper elt=element("gallery.title");
         String title=elt.getText();
@@ -25,7 +25,7 @@ public class GalleryPage extends BasePage{
         return false;
     }
 
-    public Integer countOfSnapshot() throws Exception {
+    public Integer countOfSnapshot() {
         IWebElementWrapper elt=element("gallery.delete");
         if(elt.isPresent()){
             List<IWebElementWrapper> elts=elt.findElements();

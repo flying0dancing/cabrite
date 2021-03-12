@@ -11,9 +11,10 @@ public class DisplayPage extends BasePage{
     public DisplayPage(IWebDriverWrapper webDriverWrapper) {
         super(webDriverWrapper);
     }
-    public Boolean isThePage() throws Exception {
+
+    public Boolean isThePage(){
         waitThat();
-        IWebElementWrapper elt=element("display.title");
+        IWebElementWrapper elt= element("display.title");
         String title=elt.getText();
         if(title.equals("Gallery")){
             logger.info("page title is {}",title);

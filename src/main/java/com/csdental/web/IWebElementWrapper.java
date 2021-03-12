@@ -16,6 +16,6 @@ public interface IWebElementWrapper {
     String takeScreenshot(String name);
     String takeScreenshot();
     void canvas_move(int xStart, int yStart, int xOffset, int yOffset);
-    void canvas_double_click(int x, int y);
+    void canvas_click(int x, int y);
     void selectByVisibleText(String value);
 }

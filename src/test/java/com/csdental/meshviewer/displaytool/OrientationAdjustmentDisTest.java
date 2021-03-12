@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 @Test(groups={"smoke","function_test"})
 public class OrientationAdjustmentDisTest extends TestManager {
     String uploadFileName="Common_HD3D/common.HD3D.off[1.0.3.600]/Franklin_Benjamin_[2021-03-03_09-51-18].dcm";
+    //String uploadFileName="Common+Preparation/c1873bee-98ff-4e48-b9bc-b92064636987_Restore.dcm";
 
     public void checkMovementZIncreaseMaximum() throws Exception {
         String name=Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -23,12 +24,18 @@ public class OrientationAdjustmentDisTest extends TestManager {
             String text="0.05";
             Reporter.log("select Movement step "+text);
             Assert.assertEquals(oa.selectMovementStep(text),text,"Cann't select "+text);
-
-            //oa.selectUpperJaw();
-            oa.selectLowerJaw();
-
-            Integer distance=101;
+            Integer distance=99;
             String disResult=oa.clickDistancePlus(distance);
+            Reporter.log("click distance Increase("+distance.toString()+" times), get distance is "+disResult);
+            embededScreenShot(name+"_distance_"+disResult);
+            Assert.assertEquals(disResult,"4.95","distance is not same as expected result");
+
+            text="0.1";
+            Reporter.log("select Movement step "+text);
+            Assert.assertEquals(oa.selectMovementStep(text),text,"Cann't select "+text);
+
+            distance=1;
+            disResult=oa.clickDistancePlus(distance);
             Reporter.log("click distance Increase("+distance.toString()+" times), get distance is "+disResult);
             embededScreenShot(name+"_max_"+disResult);
             Assert.assertEquals(disResult,"5","distance is not same as expected result");

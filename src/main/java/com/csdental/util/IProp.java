@@ -11,8 +11,8 @@ public interface IProp {
 
     //product meshviewer
     String LOCATORS_MESHVIEWER=PropHelper.getProperty("locators.meshviewer");
-    String PRODUCT_MESHVIEWER="meshviewer";
-    //String TEST_SOURCE_MESHVIEWER=TEST_SOURCE+PRODUCT_MESHVIEWER+"/";
-    String TEST_SOURCE_MESHVIEWER=TEST_SOURCE;
+    String PRODUCT_MESHVIEWER="MeshViewer_TestData";
+    String TEST_SOURCE_MESHVIEWER=TEST_SOURCE+PRODUCT_MESHVIEWER+"/";
+
 
 }

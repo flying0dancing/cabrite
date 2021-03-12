@@ -17,7 +17,7 @@ public class TestManager {
     IWebDriverWrapper webDriverWrapper;
     @Parameters({"browser","url"})
     @BeforeClass
-    public void beforeclass(ITestContext context, @Optional("chrome") String browser,@Optional("http://localhost:3001/") String url){
+    public void beforeclass(ITestContext context, @Optional("chrome") String browser,@Optional("http://localhost:3000/") String url){
         webDriverWrapper=new WebDriverFactory().wrapWebDriver(browser);
         webDriverWrapper.get(url);
         logger.info("open website url:{}",url);
