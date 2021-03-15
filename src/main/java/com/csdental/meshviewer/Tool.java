@@ -206,7 +206,8 @@ public class Tool extends BasePage implements ITool {
         logger.info("click Display button on left bar");
         IWebElementWrapper elt=element(_leftbar,ToolBar.DISPLAY.getBtnText());
         elt.click();
-        return new DisplayPage(new BasePage(webDriverWrapper));
+        waitThat(5000);
+        return new DisplayPage(webDriverWrapper);
     }
 
     @Override

@@ -160,17 +160,24 @@ public class WebElementWrapper implements IWebElementWrapper {
         return scrFile.isFile()?scrFile.getPath():null;
     }
 
-    public void canvas_move(int xStart, int yStart, int xOffset, int yOffset){
+    public void mouse_move(int xStart, int yStart, int xOffset, int yOffset){
         Actions actions=new Actions(driver);
         actions.moveToElement(element,xStart,yStart).clickAndHold().moveByOffset(xOffset,yOffset).release().build().perform();
     }
 
-    public void canvas_click(int x, int y){
+    public void mouse_move(int xStart, int yStart){
+        Actions actions=new Actions(driver);
+        actions.moveToElement(element,xStart,yStart).clickAndHold().release().perform();
+    }
+
+    public void mouse_click(int x, int y){
         Actions actions=new Actions(driver);
         //actions.moveToElement(element,x,y).clickAndHold().release().perform();
         actions.moveToElement(element,x,y).click().perform();
 
     }
+
+
 
     @Override
     public void selectByVisibleText(String value) {

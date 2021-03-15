@@ -32,7 +32,7 @@ public class MeshViewPage extends BasePage implements ITool {
         return false;
     }
 
-    public void uploadFile(String filefullname) throws Exception {
+    public void uploadFile(String filefullname) {
         logger.info("upload file {}",filefullname);
         String js="document.getElementsByTagName('input')[0].removeAttribute('hidden');";
         executeScript(js);
@@ -47,7 +47,7 @@ public class MeshViewPage extends BasePage implements ITool {
 
     public void moveMesh() {
         logger.info("move mesh from (0,0) to (200,200)");
-        element("canvas.it").canvas_move(0,0,200,200);
+        element("canvas.it").mouse_move(0,0,200,200);
     }
 
     public Boolean fileUploadDlgExist() {

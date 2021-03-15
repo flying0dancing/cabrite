@@ -189,7 +189,7 @@ public class OrientationAdjustment extends BasePage {
 
     private void selectJaw(String canvas,Integer xoffset,Integer yoffset, String notes){
         logger.info("click canvas on ("+xoffset.toString()+", "+yoffset.toString()+") for selected "+notes);
-        element(canvas).canvas_click(xoffset,yoffset);
+        element(canvas).mouse_click(xoffset,yoffset);
         loading(10000);
     }
 

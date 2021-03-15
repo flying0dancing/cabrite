@@ -19,12 +19,18 @@
   {"id": "topbar.btnReset","type": "WebElement","by": "xpath","expr": "canvasToolbar.btnReset","description": "Reset"},
 
 
-  {"id": "gallery.title","type": "WebElement","by": "xpath","expr": "//b[text()='Gallery']","description": "Gallery Title"},
+  {"id": "gallery.title","type": "WebElement","by": "xpath","expr": "//h5[contains(@class,'MuiTypography-gutterBottom')]/b","description": "Gallery Title"},
   {"id": "gallery.delete","type": "WebElement","by": "xpath","expr": "//button[@title='Delete']","description": "Delete"},
 
-  {"id": "display.title","type": "WebElement","by": "xpath","expr": "//b[text()='Display']","description": "display Title"},
+  {"id": "display.title","type": "WebElement","by": "xpath","expr": "//h5[contains(@class,'MuiTypography-gutterBottom')]/b","description": "display Title"},
+  {"id": "display.maxillarySlider","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Maxillary']/following-sibling::div[1]/div[2]//span[@class='MuiSlider-track']","description": "display maxillary Slider"},
+  {"id": "display.maxillaryData","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Maxillary']/following-sibling::div[1]/div[3]/h6","description": "display maxillary Slider data"},
+  {"id": "display.maxillaryShow","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Maxillary']/following-sibling::div[1]/div[1]/button","description": "display maxillary Slider button show or hide "},
+  {"id": "display.mandibularSlider","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Mandibular']/following-sibling::div[1]/div[2]//span[@class='MuiSlider-track']","description": "display Mandibular Slider"},
+  {"id": "display.mandibularData","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Mandibular']/following-sibling::div[1]/div[3]/h6","description": "display Mandibular Slider data "},
+  {"id": "display.mandibularShow","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Mandibular']/following-sibling::div[1]/div[1]/button","description": "display Mandibular Slider button show or hide "},
 
-  {"id": "orientationAdjustment.title","type": "WebElement","by": "xpath","expr": "//div/h5/b[text()='Orientation Adjustment']","description": "Orientation Adjustment Title"},
+  {"id": "orientationAdjustment.title","type": "WebElement","by": "xpath","expr": "//h5[contains(@class,'MuiTypography-gutterBottom')]/b","description": "Orientation Adjustment Title"},
   {"id": "orientationAdjustment.occlusionPlane","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[1]/div[h6/text()='Show Occlusion Plane']/following-sibling::div[1]","description": "orientationAdjustment Occlusion Plane"},
   {"id": "orientationAdjustment.occlusionPlaneStatus","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[1]/div[h6/text()='Show Occlusion Plane']/following-sibling::div[1]/span/span[contains(@class,'Mui-checked')]","description": "orientationAdjustment Occlusion Plane Status"},
 

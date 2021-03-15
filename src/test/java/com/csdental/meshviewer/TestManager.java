@@ -17,7 +17,7 @@ public class TestManager {
     IWebDriverWrapper webDriverWrapper;
     @Parameters({"browser","url"})
     @BeforeClass
-    public void beforeclass(ITestContext context, @Optional("chrome") String browser,@Optional("http://localhost:3000/") String url){
+    public void beforeclass(ITestContext context, @Optional("chrome") String browser,@Optional("http://localhost:3001/") String url){
         webDriverWrapper=new WebDriverFactory().wrapWebDriver(browser);
         webDriverWrapper.get(url);
         logger.info("open website url:{}",url);
@@ -34,7 +34,7 @@ public class TestManager {
     }
 
     @Test(enabled=false)
-    public void uploadDCM(BasePage basePage, String uploadFileName) throws Exception {
+    public void uploadDCM(BasePage basePage, String uploadFileName) {
         MeshViewPage meshViewPage=(MeshViewPage)basePage;
         if(meshViewPage.fileUploadDlgExist()){
             //String uploadFileName="652abe30-4de1-4c44-9ff4-a743617ac5c1_Orthodontics.dcm";
