@@ -15,6 +15,10 @@ public interface IWebElementWrapper {
     String getText();
     String takeScreenshot(String name);
     String takeScreenshot();
+    int getWidth();
+    int getHeight();
+    int getX();
+    int getY();
     void mouse_move(int xStart, int yStart);
     void mouse_move(int xStart, int yStart, int xOffset, int yOffset);
     void mouse_click(int x, int y);

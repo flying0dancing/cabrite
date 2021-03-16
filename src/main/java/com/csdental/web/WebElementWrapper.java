@@ -160,6 +160,26 @@ public class WebElementWrapper implements IWebElementWrapper {
         return scrFile.isFile()?scrFile.getPath():null;
     }
 
+    public int getWidth(){
+        int width=element.getRect().getWidth();
+        logger.info("Dimension Width:{}",width);
+        return width;
+    }
+    public int getHeight(){
+        int height=element.getRect().getHeight();
+        logger.info("Dimension Height:{}",height);
+        return height;
+    }
+    public int getX(){
+        int x=element.getRect().getX();
+        logger.info("Point X:{}",x);
+        return x;
+    }
+    public int getY(){
+        int y=element.getRect().getY();
+        logger.info("Point Y:{}",y);
+        return y;
+    }
     public void mouse_move(int xStart, int yStart, int xOffset, int yOffset){
         Actions actions=new Actions(driver);
         actions.moveToElement(element,xStart,yStart).clickAndHold().moveByOffset(xOffset,yOffset).release().build().perform();
@@ -172,7 +192,6 @@ public class WebElementWrapper implements IWebElementWrapper {
 
     public void mouse_click(int x, int y){
         Actions actions=new Actions(driver);
-        //actions.moveToElement(element,x,y).clickAndHold().release().perform();
         actions.moveToElement(element,x,y).click().perform();
 
     }

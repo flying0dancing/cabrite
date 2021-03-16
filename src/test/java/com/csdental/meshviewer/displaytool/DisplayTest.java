@@ -16,17 +16,17 @@ public class DisplayTest extends TestManager {
             uploadDCM(meshViewPage,uploadFileName);
             DisplayPage displayPage=meshViewPage.clickDisplay();
             Boolean flag=displayPage.moveMandibularSlider(85);
-            displayPage.showOrHideMandibular();
+            /*displayPage.showOrHideMandibular();
             displayPage.showOrHideMandibular();
             displayPage.showOrHideMaxillary();
-            displayPage.showOrHideMaxillary();
-            /*displayPage.moveMandibularSlider(20);
+            displayPage.showOrHideMaxillary();*/
+            displayPage.moveMandibularSlider(20);
             displayPage.moveMandibularSlider(55);
             displayPage.moveMandibularSlider(50);
             displayPage.moveMandibularSlider(78);
             displayPage.moveMandibularSlider(0);
             displayPage.moveMandibularSlider(90);
-            displayPage.moveMandibularSlider(100);*/
+            displayPage.moveMandibularSlider(100);
 
             org.junit.Assert.assertTrue("slider doesn't move to correct position",flag);
         }
