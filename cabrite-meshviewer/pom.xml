@@ -5,37 +5,51 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.csdental</groupId>
-  <artifactId>cabrite</artifactId>
+  <artifactId>cabrite-meshviewer</artifactId>
   <version>21.1-SNAPSHOT</version>
-  <modules>
-    <module>cabrite-core</module>
-    <module>cabrite-meshviewer</module>
-    <module>cabrite-partnerportal</module>
-  </modules>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
 
-  <name>cabrite</name>
+  <name>cabrite-meshviewer</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <version.selenium-java>3.141.59</version.selenium-java>
-    <version.htmlunit-driver>2.33.2</version.htmlunit-driver>
-    <version.java>1.8</version.java>
-    <version.logback>1.2.3</version.logback>
-    <version.gson>2.8.6</version.gson>
-    <version.testng>6.8</version.testng>
-    <version.reportng>1.1.4</version.reportng>
-    <version.guice>4.2.3</version.guice>
-    <version.json>20201115</version.json>
-    <xmlFileName>suites/testng1.xml</xmlFileName>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <version.java>1.8</version.java>
+    <version.testng>6.8</version.testng>
+    <version.reportng>1.1.4</version.reportng>
+    <argLine>-Dfile.encoding=UTF-8</argLine>
+    <result>D:/mavenproject/result/</result>
+    <report>reportng-reports</report>
+    <suiteXmlFile>D:/mavenproject/cabrite/cabrite-meshviewer/suites/meshviewer_smoke.xml</suiteXmlFile>
+
   </properties>
 
   <dependencies>
-
+    <dependency>
+      <groupId>com.csdental</groupId>
+      <artifactId>cabrite-core</artifactId>
+      <version>21.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${version.testng}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.uncommons</groupId>
+      <artifactId>reportng</artifactId>
+      <version>${version.reportng}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+        </exclusion>
+      </exclusions>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -58,6 +72,28 @@
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.1</version>
+          <configuration>
+            <skipTests>false</skipTests>
+            <suiteXmlFiles>
+              <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+            </suiteXmlFiles>
+            <properties>
+              <property>
+                <name>usedefaultlisteners</name>
+                <value>false</value>
+              </property>
+              <property>
+                <name>listener</name>
+                <value>org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter</value>
+              </property>
+            </properties>
+            <systemPropertyVariables>
+              <org.uncommons.reportng.title>CS MeshViewer</org.uncommons.reportng.title>
+              <org.uncommons.reportng.escape-output>false</org.uncommons.reportng.escape-output>
+              <org.uncommons.reportng.xml-dialect>testng</org.uncommons.reportng.xml-dialect>
+            </systemPropertyVariables>
+            <reportsDirectory>${result}/${report}</reportsDirectory>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>

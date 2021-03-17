@@ -5,37 +5,27 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.csdental</groupId>
-  <artifactId>cabrite</artifactId>
+  <artifactId>cabrite-partnerportal</artifactId>
   <version>21.1-SNAPSHOT</version>
-  <modules>
-    <module>cabrite-core</module>
-    <module>cabrite-meshviewer</module>
-    <module>cabrite-partnerportal</module>
-  </modules>
-  <packaging>pom</packaging>
 
-  <name>cabrite</name>
+  <name>cabrite-partnerportal</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <version.selenium-java>3.141.59</version.selenium-java>
-    <version.htmlunit-driver>2.33.2</version.htmlunit-driver>
     <version.java>1.8</version.java>
-    <version.logback>1.2.3</version.logback>
-    <version.gson>2.8.6</version.gson>
-    <version.testng>6.8</version.testng>
-    <version.reportng>1.1.4</version.reportng>
-    <version.guice>4.2.3</version.guice>
-    <version.json>20201115</version.json>
     <xmlFileName>suites/testng1.xml</xmlFileName>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
-
+    <dependency>
+      <groupId>com.csdental</groupId>
+      <artifactId>cabrite-core</artifactId>
+      <version>21.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <build>

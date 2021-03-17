@@ -5,16 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.csdental</groupId>
-  <artifactId>cabrite</artifactId>
+  <artifactId>cabrite-core</artifactId>
   <version>21.1-SNAPSHOT</version>
-  <modules>
-    <module>cabrite-core</module>
-    <module>cabrite-meshviewer</module>
-    <module>cabrite-partnerportal</module>
-  </modules>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
 
-  <name>cabrite</name>
+  <name>cabrite-core</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -29,13 +24,67 @@
     <version.reportng>1.1.4</version.reportng>
     <version.guice>4.2.3</version.guice>
     <version.json>20201115</version.json>
-    <xmlFileName>suites/testng1.xml</xmlFileName>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${version.selenium-java}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>htmlunit-driver</artifactId>
+      <version>${version.htmlunit-driver}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${version.testng}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.google.inject/guice -->
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <version>${version.guice}</version>
+    </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.uncommons/reportng -->
+    <dependency>
+      <groupId>org.uncommons</groupId>
+      <artifactId>reportng</artifactId>
+      <version>${version.reportng}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+        </exclusion>
+      </exclusions>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${version.logback}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${version.gson}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.json/json -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>${version.json}</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -54,6 +103,10 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
+          <configuration>
+            <source>${version.java}</source>
+            <target>${version.java}</target>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
