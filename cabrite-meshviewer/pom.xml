@@ -21,7 +21,8 @@
     <version.testng>6.8</version.testng>
     <version.reportng>1.1.4</version.reportng>
     <argLine>-Dfile.encoding=UTF-8</argLine>
-    <result>D:/mavenproject/result/</result>
+    <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+    <result>${project.build.directory}/result[${maven.build.timestamp}]</result>
     <report>reportng-reports</report>
     <suiteXmlFile>D:/mavenproject/cabrite/cabrite-meshviewer/suites/meshviewer_smoke.xml</suiteXmlFile>
 

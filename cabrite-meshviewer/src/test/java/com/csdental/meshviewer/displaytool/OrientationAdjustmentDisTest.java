@@ -4,7 +4,8 @@ import com.csdental.meshviewer.MeshViewPage;
 import com.csdental.meshviewer.OrientationAdjustment;
 import com.csdental.meshviewer.TestManager;
 import org.testng.Assert;
-import org.testng.Reporter;
+import org.testng.ITestContext;
+import com.csdental.test.Reporter;
 import org.testng.annotations.Test;
 
 @Test(groups={"smoke","function_test"})
@@ -12,7 +13,8 @@ public class OrientationAdjustmentDisTest extends TestManager {
     String uploadFileName="Common_HD3D/common.HD3D.off[1.0.3.600]/Franklin_Benjamin_[2021-03-03_09-51-18].dcm";
     //String uploadFileName="Common+Preparation/c1873bee-98ff-4e48-b9bc-b92064636987_Restore.dcm";
 
-    public void checkMovementZIncreaseMaximum() {
+    public void checkMovementZIncreaseMaximum(ITestContext context) {
+        Reporter.testStart();
         String name=Thread.currentThread().getStackTrace()[1].getMethodName();
         MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
         if(meshViewPage.isThePage()){
@@ -46,9 +48,10 @@ public class OrientationAdjustmentDisTest extends TestManager {
             embededScreenShot(name+"_reset_"+disResult);
             Assert.assertEquals(disResult,"0","distance is not same as expected result");
         }
+        Reporter.testEnd();
     }
 
-    @Test(enabled = false)
+    //@Test(enabled = false)
     public void checkMovementZReset() {
         String name=Thread.currentThread().getStackTrace()[1].getMethodName();
         MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
@@ -84,7 +87,7 @@ public class OrientationAdjustmentDisTest extends TestManager {
             Assert.assertEquals(disResult,"0","distance is not same as expected result");
         }
     }
-    @Test(enabled = false)
+    //@Test(enabled = false)
     public void checkMovementZDecreaseMinimum() throws Exception {
         String name=Thread.currentThread().getStackTrace()[1].getMethodName();
         MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());

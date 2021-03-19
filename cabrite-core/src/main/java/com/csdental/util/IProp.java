@@ -5,8 +5,11 @@ public interface IProp {
 
 
     String RESULT_FOLDER=Strs.resultToday(PropHelper.getProperty("path.result.folder"));
+
     String SCREENSHOT_FOLDER=RESULT_FOLDER+PropHelper.getProperty("path.screenshot.folder");
     String SCREENSHOT_TYPE=".png";
+
+    String REPORT_FOLDER=RESULT_FOLDER+"reportng-reports";
 
     String SOURCE_FOLDER =PropHelper.getProperty("test.source");
 

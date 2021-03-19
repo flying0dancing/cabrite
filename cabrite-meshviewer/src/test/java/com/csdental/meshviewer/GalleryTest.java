@@ -1,7 +1,6 @@
 package com.csdental.meshviewer;
 
-import com.csdental.test.IComFolder;
-import com.csdental.util.IProp;
+
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;

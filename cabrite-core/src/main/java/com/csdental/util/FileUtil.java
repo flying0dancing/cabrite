@@ -23,6 +23,7 @@ public class FileUtil {
                 {
                     file=createNewFileWithSuffix(file,null,null);
                 }else{
+                    System.out.println(file.getPath());
                     createParentFolder(file);
                     file.createNewFile();
                 }

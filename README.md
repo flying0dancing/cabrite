@@ -6,5 +6,12 @@ use maven command to run a testng suite
 ###testng suite parameter
 `browser`:chrome
 `url`:web site for tested
+
+graph TD;
+A-->B;
+A-->C;
+B-->D;
+C-->D;
+
   
 

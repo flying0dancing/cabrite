@@ -10,8 +10,7 @@ public class DisplayCheck extends TestManager {
         Reporter.log("static check all buttons in top bar display and enable.");
         MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
         if(meshViewPage.isThePage()){
-            Reporter.log("take screenshot");
-            getWebDriverWrapper().takeScreenshot(Thread.currentThread().getStackTrace()[1].getMethodName());
+            embededScreenShot(Thread.currentThread().getStackTrace()[1].getMethodName());
 
             Assert.assertTrue(meshViewPage.isDisplayedTopBar(),"some buttons of top bar are missing.");
         }
@@ -20,8 +19,7 @@ public class DisplayCheck extends TestManager {
         Reporter.log("static check all buttons in left-top bar display and enable.");
         MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
         if(meshViewPage.isThePage()){
-            Reporter.log("take screenshot");
-            getWebDriverWrapper().takeScreenshot(Thread.currentThread().getStackTrace()[1].getMethodName());
+            embededScreenShot(Thread.currentThread().getStackTrace()[1].getMethodName());
             Assert.assertTrue(meshViewPage.isDisplayedLeftBar(),"some buttons of left bar are missing.");
         }
     }

@@ -13,8 +13,7 @@ public class TopBarTest  extends TestManager {
         if(meshViewPage.isThePage()){
             Reporter.log("click Display in left-top bar");
             meshViewPage.clickDisplay();
-            Reporter.log("take screenshot");
-            getWebDriverWrapper().takeScreenshot(Thread.currentThread().getStackTrace()[1].getMethodName());
+            embededScreenShot(Thread.currentThread().getStackTrace()[1].getMethodName());
             Assert.assertTrue(meshViewPage.isDisplayedTopBar(),"some buttons of top bar are missing, after clicked display.");
         }
     }
@@ -24,8 +23,7 @@ public class TopBarTest  extends TestManager {
         if(meshViewPage.isThePage()){
             Reporter.log("click Gallery in left-top bar");
             meshViewPage.clickGallery();
-            Reporter.log("take screenshot");
-            getWebDriverWrapper().takeScreenshot(Thread.currentThread().getStackTrace()[1].getMethodName());
+            embededScreenShot(Thread.currentThread().getStackTrace()[1].getMethodName());
             Assert.assertFalse(meshViewPage.isPresentedTopBar(),"some buttons of top bar are not hidden, after clicked Gallery.");
         }
     }

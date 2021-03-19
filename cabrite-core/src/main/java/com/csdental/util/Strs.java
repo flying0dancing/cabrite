@@ -58,6 +58,20 @@ public class Strs {
         return path;
     }
 
+    /**
+     * revise/uniform file path separator, let file's separator is linux's.
+     * @param path
+     * @return
+     */
+    public static String convertFilePath(String path)
+    {
+        if(StringUtils.isNotBlank(path)){
+            path=reviseFilePath(path);
+            path=path.replace("\\", "/");
+        }
+        return path;
+    }
+
     /***
      * remove last separator of path if it has.
      * @param path
@@ -121,7 +135,7 @@ public class Strs {
     public static String resultToday(String path){
         //String today="result["+ getFormatDate()+"T"+getFormatTime()+"]";
         String today="result["+ getFormatDate()+"]";
-        String pathToday=path.replace("/result/$","/"+today+"/").replace("\\result\\$","\\"+today+"\\");
+        String pathToday=path.replace("/result/","/"+today+"/").replace("\\result\\","\\"+today+"\\");
         return projectPath()+pathToday;
     }
 
