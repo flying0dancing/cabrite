@@ -1,5 +1,5 @@
 [
-  {"id": "uploadDlg","type": "WebElement","by": "xpath","expr": "//div[text()='Click this button or drag files here to import the data']","description": "upload files"},
+  {"id": "uploadDlg","type": "WebElement","by": "xpath","expr": "//div[contains(text(),'DCM')][contains(text(),'STL')][contains(text(),'PLY')]","description": "upload files"},
   {"id": "upload","type": "WebElement","by": "xpath","expr": "//label[@role='button']/span/input","description": "upload files"},
   {"id": "canvas.it","type": "WebElement","by": "xpath","expr": "//div/canvas","description": "canvasleftCanvas"},
   {"id": "canvas.left","type": "WebElement","by": "id","expr": "leftCanvas","description": "canvas"},

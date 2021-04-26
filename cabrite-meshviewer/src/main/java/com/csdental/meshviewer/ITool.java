@@ -1,6 +1,8 @@
 package com.csdental.meshviewer;
 
 public interface ITool {
+    String getLanguage();
+    Boolean changeLanguage(String language);
     Boolean clickFront();
     Boolean clickBack();
     Boolean clickTop();

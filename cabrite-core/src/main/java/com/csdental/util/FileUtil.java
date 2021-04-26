@@ -1,15 +1,42 @@
 package com.csdental.util;
 
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
+
+import static org.apache.commons.io.FileUtils.copyFile;
+import static org.apache.commons.io.FileUtils.copyToDirectory;
 
 public class FileUtil {
     private final static Logger logger = LoggerFactory.getLogger(FileUtil.class);
-
+    public static void createDirectory(String folderPath)
+    {
+        if(folderPath!=null)
+        {
+            File folder = new File(folderPath);
+            if(!folder.isDirectory())
+            {
+                folder.mkdirs();
+            }
+        }
+    }
+    public static void createDirectory(String outputDir, String subDir) throws Exception
+    {
+        File file = new File(outputDir);
+        if (!(subDir == null || subDir.trim().equals("")))
+        {
+            file = new File(outputDir + File.separator + subDir);
+        }
+        if (!file.exists())
+        {
+            file.mkdirs();
+        }
+    }
     public static void createParentFolder(File file){
         File parent=file.getParentFile();
         parent.mkdirs();
@@ -105,5 +132,103 @@ public class FileUtil {
         }
         return "";
     }
+
+    public static void copyFileToDirectory(String sourceFolder,String fileType, String destFolder) throws Exception
+    {
+        try
+        {
+            if(sourceFolder!=null && fileType!=null && destFolder!=null)
+            {
+                if(fileType.lastIndexOf(";")==fileType.length()-1){fileType=fileType.substring(0, fileType.length()-1);}
+                String[] fileTypes=fileType.split(";");
+
+                for(int i=0; i<fileTypes.length;i++)
+                {
+                    final String fileTypeStr=fileTypes[i];
+                    File sourceFolderHandle=new File(sourceFolder);
+                    File[] files=sourceFolderHandle.listFiles(new FilenameFilter(){
+                        public boolean accept(File f , String name){
+                            return name.endsWith(fileTypeStr);}
+                    });
+                    File destFolderHandle=new File(destFolder);
+                    for(File file:files)
+                    {
+                        copyToDirectory(file, destFolderHandle);
+                    }
+                }
+
+
+            }
+
+        }catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
+        }
+
+    }
+
+    public static void copyDirectory(String sourcePath,String destPath) {
+        try
+        {
+            if(sourcePath!=null && destPath!=null)
+            {
+                File sourceFile=new File(sourcePath);
+                File destFile=new File(destPath);
+                if(!destFile.exists()){createDirectory(destPath);}
+                copyToDirectory(sourceFile,destFile);
+            }
+
+        }catch(Exception e)
+        {logger.error(e.getMessage());}
+    }
+    /**
+     * copy files and folders newer than startTime
+     * @author kun shen
+     * @param sourcePath
+     * @param destPath
+     * @param startTime
+     */
+    public static void copyDirectory(String sourcePath, String destPath,long startTime, long endTime)
+    {
+        try
+        {
+            if(sourcePath!=null && destPath!=null)
+            {
+                File sourceFile=new File(sourcePath);
+                File destFile=new File(destPath);
+                if(!destFile.exists()){createDirectory(destPath);}
+                if(sourceFile.isDirectory())
+                {
+                    File[] subfiles = sourceFile.listFiles();
+                    if(subfiles.length>0)
+                    {
+                        for(File subfile:subfiles)
+                        {
+                            if(subfile.isFile() && subfile.lastModified()>=startTime && subfile.lastModified()<=endTime)
+                            {
+                                copyFile(subfile,new File(destPath+subfile.getAbsolutePath().replace(sourcePath, "")));
+                            }
+                            if(subfile.isDirectory())
+                            {
+                                String destSubDirectory=destPath+subfile.getAbsolutePath().replace(sourcePath, "");
+                                copyDirectory(subfile.getAbsolutePath(),destSubDirectory,startTime, endTime);
+                            }
+                        }
+                    }
+
+                }
+                if(sourceFile.isFile() && sourceFile.lastModified()>=startTime  && sourceFile.lastModified()<=endTime)
+                {
+                    copyFile(sourceFile,destFile);
+                }
+            }
+
+        }catch(Exception e)
+        {logger.error(e.getMessage());}
+
+    }
+
+
 
 }

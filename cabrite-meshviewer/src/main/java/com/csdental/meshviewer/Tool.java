@@ -70,6 +70,21 @@ public class Tool extends BasePage implements ITool {
         }
 
     }
+
+    @Override
+    public String getLanguage() {
+        logger.info("get current language");
+        return null;
+    }
+
+    @Override
+    public Boolean changeLanguage(String language) {
+        logger.info("click change language on right upper corner");
+        IWebElementWrapper elt=element("");
+
+        return null;
+    }
+
     @Override
     public Boolean clickFront() {
         logger.info("click View Front button on top bar");
@@ -213,15 +228,23 @@ public class Tool extends BasePage implements ITool {
     @Override
     public OrientationAdjustment clickOrientationAdjustment() {
         logger.info("click Orientation Adjustment button on left bar");
+        loading(10*1000);
         IWebElementWrapper elt=element(_leftbar, ToolBar.ORIENTATIONADJUSTMENT.getBtnText());
-        elt.click();
-        loading();
-        OrientationAdjustment orientationAdjustment=new OrientationAdjustment(webDriverWrapper);
-        if(!orientationAdjustment.isThePage()){
+        if(elt.isPresent()){
+            logger.info("element OrientationAdjustment is present on leftBar");
             elt.click();
             loading();
+            OrientationAdjustment orientationAdjustment=new OrientationAdjustment(webDriverWrapper);
+            if(!orientationAdjustment.isThePage()){
+                elt.click();
+                loading();
+            }
+            return orientationAdjustment;
+        }else {
+            logger.error("no find OrientationAdjustment on leftBar");
         }
-        return orientationAdjustment;
+
+        return null;
     }
 
     @Override

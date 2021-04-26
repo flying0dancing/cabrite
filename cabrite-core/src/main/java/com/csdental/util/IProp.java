@@ -2,7 +2,8 @@ package com.csdental.util;
 
 public interface IProp {
     String WEBDRIVER_CHROME=Strs.validate(PropHelper.getProperty("path.webdriver.chrome"));
-
+    String WEBDRIVER_FIREFOX=Strs.validate(PropHelper.getProperty("path.webdriver.firefox"));
+    String WEBDRIVER_EDGE_X86=Strs.validate(PropHelper.getProperty("path.webdriver.edge.x86"));
 
     String RESULT_FOLDER=Strs.resultToday(PropHelper.getProperty("path.result.folder"));
 

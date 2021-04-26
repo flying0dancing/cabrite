@@ -60,6 +60,16 @@ public class MeshViewPage extends BasePage implements ITool {
 
 
     @Override
+    public String getLanguage() {
+        return tool.getLanguage();
+    }
+
+    @Override
+    public Boolean changeLanguage(String language) {
+        return tool.changeLanguage(language);
+    }
+
+    @Override
     public Boolean clickFront() {
         return tool.clickFront();
     }

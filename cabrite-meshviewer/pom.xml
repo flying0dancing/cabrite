@@ -92,6 +92,7 @@
               <org.uncommons.reportng.title>CS MeshViewer</org.uncommons.reportng.title>
               <org.uncommons.reportng.escape-output>false</org.uncommons.reportng.escape-output>
               <org.uncommons.reportng.xml-dialect>testng</org.uncommons.reportng.xml-dialect>
+              <org.uncommons.reportng.reportsDirectory>${result}/${report}</org.uncommons.reportng.reportsDirectory>
             </systemPropertyVariables>
             <reportsDirectory>${result}/${report}</reportsDirectory>
           </configuration>

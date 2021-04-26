@@ -67,14 +67,14 @@ public class OrientationAdjustment extends BasePage {
     }
 
 
-    public String getAngle(String xyz) {
+    private String getAngle(String xyz) {
 
         IWebElementWrapper elt=element("orientationAdjustment.rotationAngle",xyz, (String) opAngle.get("Angle"));
         String angle=elt.getAttribute("value");
         logger.info("get angle value {}",angle);
         return angle;
     }
-    public String clickAngle(String xyz,String increaseOrDecreaseOrReset,int times) {
+    private String clickAngle(String xyz,String increaseOrDecreaseOrReset,int times) {
         logger.info("click Rotation Step {} {} {} times",xyz,increaseOrDecreaseOrReset,times);
         IWebElementWrapper elt=element("orientationAdjustment.rotationOperate",xyz, (String) opAngle.get(increaseOrDecreaseOrReset));
         for(int i=0;i<times;i++){
