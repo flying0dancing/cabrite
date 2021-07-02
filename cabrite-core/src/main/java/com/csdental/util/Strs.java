@@ -86,6 +86,35 @@ public class Strs {
         }
         return path;
     }
+
+    public static String getNameWithoutSuffix(String path){
+        String nameWithoutSuffix=null;
+        if(StringUtils.isNotBlank(path)){
+            path=Strs.removeLastSlash(Strs.reviseFilePath(path));
+            if(path.contains("\\")){
+                nameWithoutSuffix=path.substring(path.lastIndexOf("\\")+1,path.lastIndexOf("."));
+            }
+            if(path.contains("/")){
+                nameWithoutSuffix=path.substring(path.lastIndexOf("/")+1,path.lastIndexOf("."));
+            }
+        }
+        return nameWithoutSuffix;
+    }
+
+    public static String getName(String path){
+        String nameWithoutSuffix=null;
+        if(StringUtils.isNotBlank(path)){
+            path=Strs.removeLastSlash(Strs.reviseFilePath(path));
+            if(path.contains("\\")){
+                nameWithoutSuffix=path.substring(path.lastIndexOf("\\")+1,path.lastIndexOf("."))+path.substring(path.lastIndexOf("."));
+            }
+            if(path.contains("/")){
+                nameWithoutSuffix=path.substring(path.lastIndexOf("/")+1,path.lastIndexOf("."))+path.substring(path.lastIndexOf("."));
+            }
+        }
+        return nameWithoutSuffix;
+    }
+
     /***
      * get parent path, if it is the top folder, return itself
      * @param path
@@ -138,7 +167,5 @@ public class Strs {
         String pathToday=path.replace("/result/","/"+today+"/").replace("\\result\\","\\"+today+"\\");
         return projectPath()+pathToday;
     }
-
-
 
 }

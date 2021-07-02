@@ -49,6 +49,12 @@ public class WebElementWrapper implements IWebElementWrapper {
 
 
     }
+    public Boolean elementExists(){
+        if(element==null){
+            return false;
+        }
+        return true;
+    }
     private WebElement element(){
         logger.debug("locator {}",locator);
         List<WebElement> elts=driver.findElements(by);
@@ -100,6 +106,7 @@ public class WebElementWrapper implements IWebElementWrapper {
 
     @Override
     public String getAttribute(String var1){
+        //webDriverWrapper.doPostActions();
         return element.getAttribute(var1);
     }
 

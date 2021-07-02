@@ -3,6 +3,7 @@ package com.csdental.meshviewer;
 public interface ITool {
     String getLanguage();
     Boolean changeLanguage(String language);
+
     Boolean clickFront();
     Boolean clickBack();
     Boolean clickTop();
@@ -20,6 +21,7 @@ public interface ITool {
     GalleryPage clickGallery();
     ImageInformation clickImageInformation();
     AboutDialog clickAbout();
+    ExportPage clickExport();
     /**
      * check top bar is displayed, if one button of top bar provided is missing return false.
      * @param name value in {"ViewFront","ViewBack","ViewTop","ViewBottom","ViewRight","ViewLeft","ZoomFit","TakeSnapshot","ToggleTrueColor","ToggleLight","Reset"}

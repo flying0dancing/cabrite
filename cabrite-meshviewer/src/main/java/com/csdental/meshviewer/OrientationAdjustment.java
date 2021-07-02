@@ -8,13 +8,18 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OrientationAdjustment extends BasePage {
+public class OrientationAdjustment extends BasePage  implements ITool {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    public OrientationAdjustment(IWebDriverWrapper webDriverWrapper) {
-        super(webDriverWrapper);
-    }
     private Map opAngle=new HashMap<String,String>(){{put("Angle","1");put("Decrease","2");put("Increase","3");put("Reset","4");}};
     private Map opDistance=new HashMap<String,String>(){{put("Distance","2");put("Decrease","3");put("Increase","4");put("Reset","5");}};
+    private ITool tool;
+    private IWebDriverWrapper webDriverWrapper;
+
+    public OrientationAdjustment(IWebDriverWrapper webDriverWrapper) {
+        super(webDriverWrapper);
+        this.webDriverWrapper=webDriverWrapper;
+        tool=tool==null?new Tool(webDriverWrapper):tool;
+    }
 
     public Boolean isThePage() {
         waitThat();
@@ -233,5 +238,165 @@ public class OrientationAdjustment extends BasePage {
             flag=false;
         }
         return flag;
+    }
+
+    @Override
+    public String getLanguage() {
+        return tool.getLanguage();
+    }
+
+    @Override
+    public Boolean changeLanguage(String language) {
+        return tool.changeLanguage(language);
+    }
+
+    @Override
+    public Boolean clickFront() {
+        return tool.clickFront();
+    }
+
+    @Override
+    public Boolean clickBack() {
+        return tool.clickBack();
+    }
+
+    @Override
+    public Boolean clickTop() {
+        return tool.clickTop();
+    }
+
+    @Override
+    public Boolean clickBottom() {
+        return tool.clickBottom();
+    }
+
+    @Override
+    public Boolean clickRight() {
+        return tool.clickRight();
+    }
+
+    @Override
+    public Boolean clickLeft() {
+        return tool.clickLeft();
+    }
+
+    @Override
+    public Boolean clickZoomFit() {
+        return tool.clickZoomFit();
+    }
+
+    @Override
+    public Boolean clickSnapshot() {
+        return tool.clickSnapshot();
+    }
+
+    @Override
+    public Boolean clickTrueColor() {
+        return tool.clickTrueColor();
+    }
+
+    @Override
+    public Boolean clickLight() {
+        return tool.clickLight();
+    }
+
+    @Override
+    public Boolean clickReset() {
+        return tool.clickReset();
+    }
+
+    @Override
+    public DisplayPage clickDisplay() {
+        return tool.clickDisplay();
+    }
+
+    @Override
+    public OrientationAdjustment clickOrientationAdjustment() {
+        return tool.clickOrientationAdjustment();
+    }
+
+    @Override
+    public GalleryPage clickGallery() {
+        return tool.clickGallery();
+    }
+
+    @Override
+    public ImageInformation clickImageInformation() {
+        return tool.clickImageInformation();
+    }
+
+    @Override
+    public AboutDialog clickAbout() {
+        return tool.clickAbout();
+    }
+
+    @Override
+    public ExportPage clickExport() {
+        return tool.clickExport();
+    }
+
+    @Override
+    public Boolean isDisplayedTopBar(String... name) {
+        return tool.isDisplayedTopBar(name);
+    }
+
+    @Override
+    public Boolean isDisplayedTopBar() {
+        return tool.isDisplayedTopBar();
+    }
+
+    @Override
+    public Boolean isPresentedTopBar(String... name) {
+        return tool.isPresentedTopBar(name);
+    }
+
+    @Override
+    public Boolean isPresentedTopBar() {
+        return tool.isPresentedTopBar();
+    }
+
+    @Override
+    public Boolean isEnabledTopBar(String... name) {
+        return tool.isEnabledTopBar(name);
+    }
+
+    @Override
+    public Boolean getDefaultEnabledStatusTopBar() {
+        return tool.getDefaultEnabledStatusTopBar();
+    }
+
+    @Override
+    public Boolean isDisplayedLeftBar(String... name) {
+        return tool.isDisplayedLeftBar(name);
+    }
+
+    @Override
+    public Boolean isDisplayedLeftBar() {
+        return tool.isDisplayedLeftBar();
+    }
+
+    @Override
+    public Boolean isPresentedLeftBar(String... name) {
+        return tool.isPresentedLeftBar(name);
+    }
+
+    @Override
+    public Boolean isPresentedLeftBar() {
+        return tool.isPresentedLeftBar();
+    }
+
+    @Override
+    public Boolean isEnabledLeftBar(String... name) {
+        return tool.isEnabledLeftBar(name);
+    }
+
+    @Override
+    public Boolean isEnabledLeftBar() {
+        return tool.isEnabledLeftBar();
+    }
+
+    @Override
+    public Boolean getDefaultPresentedStatusLeftBar() {
+        return tool.getDefaultPresentedStatusLeftBar();
     }
 }

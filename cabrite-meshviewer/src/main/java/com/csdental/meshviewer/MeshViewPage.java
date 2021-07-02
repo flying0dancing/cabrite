@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 public class MeshViewPage extends BasePage implements ITool {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private IWebDriverWrapper webDriverWrapper;
-    private static ITool tool;
+    private ITool tool;
     String title;
 
     public MeshViewPage(IWebDriverWrapper webDriverWrapper){
@@ -25,11 +25,12 @@ public class MeshViewPage extends BasePage implements ITool {
     }
 
     public Boolean isDisplayedOcclusionProximity() throws Exception {
-        IWebElementWrapper elt=element("leftbar.occlusionProximity");
+        return isDisplayedLeftBar("OcclusionMapping");
+        /*IWebElementWrapper elt=element("leftbar.occlusionProximity");
         if(elt.isDisplayed() && elt.isEnabled()){
             return true;
         }
-        return false;
+        return false;*/
     }
 
     public void uploadFile(String filefullname) {
@@ -147,6 +148,11 @@ public class MeshViewPage extends BasePage implements ITool {
     @Override
     public AboutDialog clickAbout() {
         return tool.clickAbout();
+    }
+
+    @Override
+    public ExportPage clickExport() {
+        return tool.clickExport();
     }
 
     @Override

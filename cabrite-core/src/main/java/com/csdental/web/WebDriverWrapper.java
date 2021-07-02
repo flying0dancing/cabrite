@@ -14,6 +14,7 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.SessionId;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
@@ -25,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 public class WebDriverWrapper implements IWebDriverWrapper{
     private static final Logger logger = LoggerFactory.getLogger(WebDriverWrapper.class);
@@ -39,8 +41,10 @@ public class WebDriverWrapper implements IWebDriverWrapper{
 
     public WebDriverWrapper(WebDriver webDriver){
         driver=webDriver;
-        driver.manage().window().maximize();
         setWaitJs();
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
+        logger.info("session ID:"+((RemoteWebDriver)driver).getSessionId());
     }
 
     public void setWaitJs(){
@@ -67,8 +71,33 @@ public class WebDriverWrapper implements IWebDriverWrapper{
         return js;
     }
 
+    @Override
+    public IWebDriverWrapper doPostActions() {
+        if(alert().isPresent()!=null){
+            try {
+                waitThat();
+                return this;
+            }catch (Exception e){}
+        }
+        return null;
+    }
+
+    @Override
+    public IWebDriverWrapper deleteAllCookies() {
+        logger.info("delete all cookies");
+        driver.manage().deleteAllCookies();
+        return this;
+    }
+
+    @Override
+    public SessionId getSessionId() {
+        return ((RemoteWebDriver)driver).getSessionId();
+    }
+
     public void get(String url) {
         driver.get(url);
+        //driver.navigate().to(url);
+        //driver.navigate().refresh();
     }
     public String getTitle(){
         return driver.getTitle();
@@ -78,6 +107,8 @@ public class WebDriverWrapper implements IWebDriverWrapper{
         driver.manage().window().maximize();
     }
     public void quit(){
+        //dismissAlert();
+        waitThat();
         driver.quit();
     }
     public void close(){
@@ -85,6 +116,16 @@ public class WebDriverWrapper implements IWebDriverWrapper{
         driver.close();
     }
 
+
+
+    public IAlertWrapper alert(){
+        return new AlertWrapper(this);
+    }
+
+    @Override
+    public INavigationWrapper navigation() {
+        return new NavigationWrapper(this);
+    }
 
     public void waitThat() {
         wait.until(new ExpectedCondition<Boolean>() {

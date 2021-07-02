@@ -105,19 +105,50 @@ public class ImageUtil {
         long higher_rect=higher_width*higher_height;
         double higher_diff_percent=new BigDecimal((float)higher_diff/higher_rect).setScale(6,BigDecimal.ROUND_HALF_UP).doubleValue();
         System.out.println(String.format("higher_diff_percent  %.6f", higher_diff_percent));
-        String output_prefix="afterCompare_";
-        String middle_output=output_prefix+middle.substring(middle.lastIndexOf("\\")+1,middle.lastIndexOf("."))+middle.substring(middle.lastIndexOf("."));
+        String output_prefix="getTolerance_";
+        String middle_output=output_prefix+Strs.getName(middle);
         if(lower_diff_percent>higher_diff_percent){
             tolerance=higher_diff_percent;
-            String higher_output=output_prefix+higher.substring(higher.lastIndexOf("\\")+1,higher.lastIndexOf("."))+higher.substring(higher.lastIndexOf("."));
+            String higher_output=output_prefix+Strs.getName(higher);
             higher_info.setCompareDiffFullName(resultFolder+higher_output);
             middleH_info.setCompareDiffFullName(resultFolder+middle_output);
         }else{
             tolerance=lower_diff_percent;
-            String lower_output=output_prefix+lower.substring(lower.lastIndexOf("\\")+1,lower.lastIndexOf("."))+lower.substring(lower.lastIndexOf("."));
+            String lower_output=output_prefix+Strs.getName(lower);
             lower_info.setCompareDiffFullName(resultFolder+lower_output);
             middleL_info.setCompareDiffFullName(resultFolder+middle_output);
         }
+        System.out.println(String.format("tolerance  %.6f", tolerance));
+        return 100-tolerance*100;
+    }
+
+    /**
+     * Get the maximum similar as tolerance(Get minimum different as tolerance), actual similar should bigger or equal than this result.
+     * details: using images lower, middle, higher, calculate different of lower vs middle, middle vs higher, get minimum different as tolerance.
+     * @param actual the full path of image, user take a screenshot
+     * @param expected the full path of image, user take a screenshot
+     * @return
+     */
+    public static double compareWithExpectation(String actual, String expected, String resultFolder){
+        resultFolder=Strs.reviseFilePath(resultFolder+System.getProperty("file.separator"));
+        FileUtil.createDirectory(resultFolder);
+        double tolerance=0;
+        ImageInfo actual_info=getImageInfo(actual);
+        ImageInfo expected_info=getImageInfo(expected);
+        long lower_diff=matchPercentOfCompareImage(actual_info, expected_info, 0,0);
+        int lower_width= actual_info.getCompareWidth();
+        int lower_height=actual_info.getCompareHeight();
+        long lower_rect=lower_width*lower_height;
+        double lower_diff_percent=new BigDecimal((float)lower_diff/lower_rect).setScale(6,BigDecimal.ROUND_HALF_UP).doubleValue();
+        System.out.println(String.format("actual_diff_percent  %.6f", lower_diff_percent));
+
+        String output_prefix="compareWithExpected_";
+        String middle_output=output_prefix+Strs.getName(expected);
+        tolerance=lower_diff_percent;
+        String lower_output=output_prefix+Strs.getName(actual);
+        actual_info.setCompareDiffFullName(resultFolder+lower_output);
+        expected_info.setCompareDiffFullName(resultFolder+middle_output);
+
         System.out.println(String.format("tolerance  %.6f", tolerance));
         return 100-tolerance*100;
     }
@@ -207,10 +238,6 @@ public class ImageUtil {
 
 
     public static void main(String[] args) {
-        String path="D:\\mavenproject\\rect.png";
-
-        String path1="D:\\mavenproject\\rectContrast.png";
-
         String patha1="D:\\csdworkarea\\fromApril\\checkMovementZIncreaseMaximum_distance_4.9.png";
         String patha2="D:\\csdworkarea\\fromApril\\checkMovementZIncreaseMaximum_max_5.png";
         String resultFolder="D:\\csdworkarea\\fromApril\\result\\";

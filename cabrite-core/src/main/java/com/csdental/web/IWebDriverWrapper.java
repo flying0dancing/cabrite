@@ -2,8 +2,14 @@ package com.csdental.web;
 
 import com.csdental.web.pojo.Locator;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.SessionId;
 
 public interface IWebDriverWrapper {
+    IWebDriverWrapper doPostActions();
+    IWebDriverWrapper deleteAllCookies();
+    IAlertWrapper alert();
+    INavigationWrapper navigation();
+    SessionId getSessionId();
     void get(String url);
     String getTitle();
     void maximize();

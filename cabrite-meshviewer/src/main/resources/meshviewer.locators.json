@@ -1,10 +1,10 @@
 [
   {"id": "uploadDlg","type": "WebElement","by": "xpath","expr": "//div[contains(text(),'DCM')][contains(text(),'STL')][contains(text(),'PLY')]","description": "upload files"},
   {"id": "upload","type": "WebElement","by": "xpath","expr": "//label[@role='button']/span/input","description": "upload files"},
-  {"id": "canvas.it","type": "WebElement","by": "xpath","expr": "//div/canvas","description": "canvasleftCanvas"},
-  {"id": "canvas.left","type": "WebElement","by": "id","expr": "leftCanvas","description": "canvas"},
+  {"id": "canvas.it","type": "WebElement","by": "xcanvasToolbarpath","expr": "//div/canvas","description": "canvas"},
+  {"id": "canvas.left","type": "WebElement","by": "id","expr": "leftCanvas","description": "leftCanvas"},
 
-  {"id": "leftbar.btn","type": "WebElement","by": "name","expr": "toolbar.btn?","description": "letbar"},
+  {"id": "leftbar.btn","type": "WebElement","by": "name","expr": "toolbar.btn?","description": "left bar"},
   {"id": "leftbar.display","type": "WebElement","by": "name","expr": "toolbar.btnDisplay","description": "display"},
   {"id": "leftbar.occlusionProximity","type": "WebElement","by": "name","expr": "toolbar.btnOcclusionMapping","description": "Occlusion Proximity"},
   {"id": "leftbar.orientationAdjustment","type": "WebElement","by": "name","expr": "toolbar.btnOrientationAdjustment","description": "Orientation Adjustment"},
@@ -23,12 +23,22 @@
   {"id": "gallery.delete","type": "WebElement","by": "xpath","expr": "//button[@title='Delete']","description": "Delete"},
 
   {"id": "display.title","type": "WebElement","by": "xpath","expr": "//h5[contains(@class,'MuiTypography-gutterBottom')]/b","description": "display Title"},
-  {"id": "display.maxillarySlider","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Maxillary']/following-sibling::div[1]/div[2]//span[@class='MuiSlider-track']","description": "display maxillary Slider"},
-  {"id": "display.maxillaryData","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Maxillary']/following-sibling::div[1]/div[3]/h6","description": "display maxillary Slider data"},
-  {"id": "display.maxillaryShow","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Maxillary']/following-sibling::div[1]/div[1]/button","description": "display maxillary Slider button show or hide "},
-  {"id": "display.mandibularSlider","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Mandibular']/following-sibling::div[1]/div[2]//span[@class='MuiSlider-track']","description": "display Mandibular Slider"},
-  {"id": "display.mandibularData","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Mandibular']/following-sibling::div[1]/div[3]/h6","description": "display Mandibular Slider data "},
-  {"id": "display.mandibularShow","type": "WebElement","by": "xpath","expr": "//div[h6/text()='Mandibular']/following-sibling::div[1]/div[1]/button","description": "display Mandibular Slider button show or hide "},
+
+  {"id": "display.dentalArch","type": "WebElement","by": "xpath","expr": "//h5[text()='Dental Arch']","description": "Dental Arch in display page"},
+  {"id": "display.dentalArchCount","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div","description": "Dental Arch in display page"},
+  {"id": "display.dentalArchNames","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div//h6[not(@name)]","description": "display Mandibular or maxillary name"},
+  {"id": "display.dentalArchSlider","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div[?]//span[contains(@class,'MuiSlider-track')]","description": "display Mandibular or maxillary Slider"},
+  {"id": "display.dentalArchData","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div[?]//h6[@name='transparency-value']","description": "display Mandibular or maxillary transparent data"},
+  {"id": "display.dentalArchShow","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div[?]//button[@name='visible-button']","description": "display Mandibular or maxillary button show or hide "},
+
+  {"id": "display.buccalBite","type": "WebElement","by": "xpath","expr": "//h5[text()='Buccal Bite']","description": "Buccal Bite in display page"},
+  {"id": "display.buccalBiteCount","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div","description": "Buccal Bite in display page"},
+  {"id": "display.buccalBiteRadioStatus","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//input[@name='radio-button']","description": "Buccal Bite Radio Status in display page"},
+  {"id": "display.buccalBiteRadio","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//span[input/@name='radio-button']","description": "Buccal Bite Radio  in display page"},
+
+  {"id": "display.buccalBiteSlider","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//span[contains(@class,'MuiSlider-track')]","description": "display buccalBite Slider"},
+  {"id": "display.buccalBiteData","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//h6[@name='transparency-value']","description": "display buccalBite transparent data"},
+  {"id": "display.buccalBiteShow","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//button[@name='visible-button']","description": "display buccalBite Slider button show or hide "},
 
   {"id": "orientationAdjustment.title","type": "WebElement","by": "xpath","expr": "//h5[contains(@class,'MuiTypography-gutterBottom')]/b","description": "Orientation Adjustment Title"},
   {"id": "orientationAdjustment.occlusionPlane","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[1]/div[h6/text()='Show Occlusion Plane']/following-sibling::div[1]","description": "orientationAdjustment Occlusion Plane"},

@@ -53,7 +53,7 @@ public class Tool extends BasePage implements ITool {
     }
     public enum ToolBar
     {
-        DISPLAY("Display"), ORIENTATIONADJUSTMENT("OrientationAdjustment"), OCCLUSIONPROXIMITY("OcclusionMapping"),  GALLERY("Gallery"), IMAGEINFORMATION("ImageInfo"), ABOUT("Info"), HELP("Help");
+        DISPLAY("Display"), ORIENTATIONADJUSTMENT("OrientationAdjustment"), OCCLUSIONPROXIMITY("OcclusionMapping"),  GALLERY("Gallery"), IMAGEINFORMATION("ImageInfo"), ABOUT("Info"), EXPORT("Export"), HELP("Help");
 
         private String btnText;
         private ToolBar(String btnText)
@@ -74,6 +74,7 @@ public class Tool extends BasePage implements ITool {
     @Override
     public String getLanguage() {
         logger.info("get current language");
+        //TODO
         return null;
     }
 
@@ -81,7 +82,7 @@ public class Tool extends BasePage implements ITool {
     public Boolean changeLanguage(String language) {
         logger.info("click change language on right upper corner");
         IWebElementWrapper elt=element("");
-
+        //TODO
         return null;
     }
 
@@ -228,8 +229,8 @@ public class Tool extends BasePage implements ITool {
     @Override
     public OrientationAdjustment clickOrientationAdjustment() {
         logger.info("click Orientation Adjustment button on left bar");
-        loading(10*1000);
-        IWebElementWrapper elt=element(_leftbar, ToolBar.ORIENTATIONADJUSTMENT.getBtnText());
+        loading(3*1000);
+        IWebElementWrapper elt=element(_leftbar, ToolBar.ORIENTATIONADJUSTMENT.getBtnText());//toolbar.btnOrientationAdjustment
         if(elt.isPresent()){
             logger.info("element OrientationAdjustment is present on leftBar");
             elt.click();
@@ -258,7 +259,7 @@ public class Tool extends BasePage implements ITool {
     @Override
     public ImageInformation clickImageInformation() {
         logger.info("click Image Information button on left bar");
-        IWebElementWrapper elt=element(_leftbar, ToolBar.IMAGEINFORMATION.getBtnText());
+        IWebElementWrapper elt=element(_leftbar, ToolBar.IMAGEINFORMATION.getBtnText());//toolbar.btnImageInfo
         elt.click();
         return new ImageInformation(webDriverWrapper);
     }
@@ -266,9 +267,17 @@ public class Tool extends BasePage implements ITool {
     @Override
     public AboutDialog clickAbout() {
         logger.info("click About button on left bar");
-        IWebElementWrapper elt=element(_leftbar, ToolBar.ABOUT.getBtnText());
+        IWebElementWrapper elt=element(_leftbar, ToolBar.ABOUT.getBtnText());//toolbar.btnInfo
         elt.click();
         return new AboutDialog(webDriverWrapper);
+    }
+
+    @Override
+    public ExportPage clickExport() {
+        logger.info("click Export button on left bar");
+        IWebElementWrapper elt=element(_leftbar, ToolBar.EXPORT.getBtnText());//toolbar.btnExport
+        elt.click();
+        return new ExportPage(webDriverWrapper);
     }
 
 
