@@ -1,9 +1,9 @@
 package com.csdental.meshviewer;
 
-import com.csdental.web.IWebDriverWrapper;
-import com.csdental.web.IWebElementWrapper;
-import com.csdental.web.LocatorFactory;
-import com.csdental.web.pojo.Locator;
+import com.mainland.web.IWebDriverWrapper;
+import com.mainland.web.IWebElementWrapper;
+import com.mainland.web.LocatorFactory;
+import com.mainland.web.pojo.Locator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

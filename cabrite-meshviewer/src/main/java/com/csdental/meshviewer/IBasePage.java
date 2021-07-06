@@ -1,6 +1,6 @@
 package com.csdental.meshviewer;
 
-import com.csdental.web.IWebElementWrapper;
+import com.mainland.web.IWebElementWrapper;
 
 public interface IBasePage extends IPage{
 

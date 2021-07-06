@@ -4,7 +4,6 @@ import com.csdental.meshviewer.MeshViewPage;
 import com.csdental.meshviewer.OrientationAdjustment;
 import com.csdental.meshviewer.TestManager;
 import com.csdental.test.IComFolder;
-import com.csdental.util.ImageUtil;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import com.csdental.test.Reporter;
@@ -21,6 +20,7 @@ public class OrientationAdjustmentDisTest extends TestManager {
         String importFile=context.getCurrentXmlTest().getParameter("importFile");
         String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
         String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
+        String screenWithinCase=caseFolder+methodName;
         MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
         if(meshViewPage.isThePage()){
 
@@ -35,13 +35,11 @@ public class OrientationAdjustmentDisTest extends TestManager {
 
             Integer distance=98;
             String disResult=oa.clickDistancePlus(distance);
-            Reporter.log("click distance Increase("+distance.toString()+" times), get distance is "+disResult);
-            String lower=embededScreenShot(caseFolder,methodName+"_distance_"+disResult);
+            String lower=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click distance Increase("+distance.toString()+" times), get distance is "+disResult);
             Assert.assertEquals(disResult,"4.9","distance is not same as expected result");
 
             disResult=oa.clickDistancePlus();
-            Reporter.log("click distance Increase("+distance.toString()+" times), get distance is "+disResult);
-            String middle=embededScreenShot(caseFolder,methodName+"_distance_"+disResult);
+            String middle=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click distance Increase("+distance.toString()+" times), get distance is "+disResult);
             Assert.assertEquals(disResult,"4.95","distance is not same as expected result");
 
             text="0.1";
@@ -50,20 +48,13 @@ public class OrientationAdjustmentDisTest extends TestManager {
 
             distance=1;
             disResult=oa.clickDistancePlus(distance);
-            Reporter.log("click distance Increase("+distance.toString()+" times), get distance is "+disResult);
-            String higher=embededScreenShot(caseFolder,methodName+"_max_"+disResult);
+            String higher=embededScreenShot(screenWithinCase+"_max_"+disResult,"click distance Increase("+distance.toString()+" times), get distance is "+disResult);
             Assert.assertEquals(disResult,"5","distance is not same as expected result");
 
-            double tolerance=ImageUtil.getTolerance(lower, middle, higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder);
-            System.out.println(String.format("in test tolerance  %.6f", tolerance));
-            //TODO IComFolder.SOURCE_FOLDER add compare function
-            double actual_tolerance=ImageUtil.compareWithExpectation(higher,IComFolder.SOURCE_EXPECTATION_FOLDER+expectationFile,IComFolder.RESULT_ACTUAL_FOLDER +caseFolder);
-            System.out.println(String.format("actual_tolerance  %.6f", actual_tolerance));
-            Assert.assertTrue(actual_tolerance>=tolerance,"actual tolerance should smaller than expectation.");
+            embededCompareResult(lower,middle,higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
 
             disResult=oa.clickDistanceReset();
-            Reporter.log("click distance Reset(1 times), get distance is "+disResult);
-            embededScreenShot(caseFolder,methodName+"_reset_"+disResult);
+            embededScreenShot(screenWithinCase+"_reset_"+disResult,"click distance Reset(1 times), get distance is "+disResult);
             Assert.assertEquals(disResult,"0","distance is not same as expected result");
         }
         Reporter.testEnd();

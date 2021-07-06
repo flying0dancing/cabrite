@@ -1,7 +1,7 @@
 package com.csdental.test;
 
-import com.csdental.util.IProp;
-import com.csdental.util.Strs;
+import com.mainland.util.IProp;
+import com.mainland.util.Strs;
 
 
 public class Reporter extends org.testng.Reporter{

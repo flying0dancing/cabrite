@@ -1,7 +1,7 @@
 package com.csdental.meshviewer;
 
-import com.csdental.web.IWebDriverWrapper;
-import com.csdental.web.IWebElementWrapper;
+import com.mainland.web.IWebDriverWrapper;
+import com.mainland.web.IWebElementWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +25,12 @@ public class DisplayPage extends BasePage{
         }
         return false;
     }
+
+    /**
+     * using Item's name to get its index in Dental Arch, if 0 means not find index.
+     * @param archNames
+     * @return
+     */
     public int getIndexOfArchByName(String... archNames){
         IWebElementWrapper eltW=element("display.dentalArch");
         if(eltW.isPresent()){
@@ -233,7 +239,7 @@ public class DisplayPage extends BasePage{
         IWebElementWrapper elt=element("display.buccalBiteRadioStatus","1");
         String str=elt.getAttribute("checked");
         logger.info("checked status of Normal Bite is {}",str);
-        if(str!=null && str=="true"){
+        if(str!=null && str.equalsIgnoreCase("true")){
             return true;
         }
         return false;
@@ -260,11 +266,10 @@ public class DisplayPage extends BasePage{
         checkBite(5);
     }
 
-
     /**
      * check some bite, like normal bite, extral bite1,...
      */
-    private void checkBite(int index){
+    public void checkBite(int index){
         int biteCount=getBiteCount();
         if(biteCount>0 && index<=biteCount){
             logger.info("now check radio of index {}",index);
@@ -273,7 +278,6 @@ public class DisplayPage extends BasePage{
             waitThat(1000);
         }
     }
-
     /**
      * click button to show or hide bite
      * @return
@@ -282,6 +286,22 @@ public class DisplayPage extends BasePage{
         logger.info("click show or hide on Normal Bite");
         return showOrHideBite(1);
     }
+    public void showOrHideExtralBite1(){
+        logger.info("click show or hide on Extra Bite 1");
+        showOrHideBite(2);
+    }
+    public void showOrHideExtralBite2(){
+        logger.info("click show or hide on Extra Bite 2");
+        showOrHideBite(3);
+    }
+    public void showOrHideExtralBite3(){
+        logger.info("click show or hide on Extra Bite 3");
+        showOrHideBite(4);
+    }
+    public void showOrHideExtralBite4(){
+        logger.info("click show or hide on Extra Bite 4");
+        showOrHideBite(5);
+    }
     /**
      * bite status should be show or hide
      * @return
@@ -289,6 +309,22 @@ public class DisplayPage extends BasePage{
     public String getNormalBiteStatus(){
         logger.info("get Normal Bite status");
         return getBiteStatus(1);
+    }
+    public void getExtralBite1Status(){
+        logger.info("get Extra Bite 1 status");
+        getBiteStatus(2);
+    }
+    public void getExtralBite2Status(){
+        logger.info("get Extra Bite 2 status");
+        getBiteStatus(3);
+    }
+    public void getExtralBite3Status(){
+        logger.info("get Extra Bite 3 status");
+        getBiteStatus(4);
+    }
+    public void getExtralBite4Status(){
+        logger.info("get Extra Bite 4 status");
+        getBiteStatus(5);
     }
 
     /**
@@ -299,6 +335,22 @@ public class DisplayPage extends BasePage{
         logger.info("get Normal Bite transparent value");
         return getBiteValue(1);
     }
+    public void getExtralBite1Value(){
+        logger.info("get Extra Bite 1 transparent Value");
+        getBiteValue(2);
+    }
+    public void getExtralBite2Value(){
+        logger.info("get Extra Bite 2 transparent Value");
+        getBiteValue(3);
+    }
+    public void getExtralBite3Value(){
+        logger.info("get Extra Bite 3 transparent Value");
+        getBiteValue(4);
+    }
+    public void getExtralBite4Value(){
+        logger.info("get Extra Bite 4 transparent Value");
+        getBiteValue(5);
+    }
     /**
      * set the bite transparent value(0..100)
      * @return
@@ -307,13 +359,29 @@ public class DisplayPage extends BasePage{
         logger.info("move Normal Bite slider");
         return moveBiteSlider(1, value);
     }
+    public void moveExtralBite1Slider(int value){
+        logger.info("move Extra Bite 1 Slider");
+        moveBiteSlider(2, value);
+    }
+    public void moveExtralBite2Slider(int value){
+        logger.info("move Extra Bite 2 Slider");
+        moveBiteSlider(3, value);
+    }
+    public void moveExtralBite3Slider(int value){
+        logger.info("move Extra Bite 3 Slider");
+        moveBiteSlider(4, value);
+    }
+    public void moveExtralBite4Slider(int value){
+        logger.info("move Extra Bite 4 Slider");
+        moveBiteSlider(5, value);
+    }
 
     /**
      * show or hide buccal bite like normal bite, extral bite 1,...
      * @param index 1(normal bite),2(extral bite 1),3(extral bite 2),4(extral bite 3),5(extral bite 4)
      * @return
      */
-    private String showOrHideBite(int index){
+    public String showOrHideBite(int index){
         IWebElementWrapper elt=element("display.buccalBiteShow",Integer.toString(index));
         elt.click();
         String str=elt.getAttribute("aria-label");
@@ -327,13 +395,13 @@ public class DisplayPage extends BasePage{
      * @param index 1(normal bite),2(extral bite 1),3(extral bite 2),4(extral bite 3),5(extral bite 4)
      * @return
      */
-    private String getBiteStatus(int index){
+    public String getBiteStatus(int index){
         IWebElementWrapper elt=element("display.buccalBiteShow",Integer.toString(index));
         String str=elt.getAttribute("aria-label");
         logger.info("Buccal Bite index {}, status is {}",index,str);
         return str;
     }
-    private Integer getBiteValue(int index){
+    public Integer getBiteValue(int index){
         return getValue("display.buccalBiteData",Integer.toString(index));
     }
 
@@ -347,20 +415,20 @@ public class DisplayPage extends BasePage{
         return getBiteValue(index)==0;
     }
 
-    private Boolean moveBiteSlider(int index,int value){
+    public Boolean moveBiteSlider(int index,int transparentValue){
         waitThat(3000);
         Boolean flag=false;
         IWebElementWrapper elt=element("display.buccalBiteSlider",Integer.toString(index));
         logger.info("Buccal Bite index {}, slider it to zero", index);
         flag=setBiteToZero(index,elt);
-        if(value==0){return flag;}
-        Integer step=Math.floorDiv(value*184,100);
-        logger.info("Buccal Bite index {}, want to move slider to {}",index,value);
+        if(transparentValue==0){return flag;}
+        Integer step=Math.floorDiv(transparentValue*184,100);
+        logger.info("Buccal Bite index {}, want to move slider to {}",index,transparentValue);
         elt.mouse_move(0,0,step,1);
         waitThat(1000);
         Integer xActual=getBiteValue(index);
         logger.info("acutally, moved slider to {}",xActual);
-        if(xActual==value){
+        if(xActual==transparentValue){
             flag=true;
         }
         return flag;

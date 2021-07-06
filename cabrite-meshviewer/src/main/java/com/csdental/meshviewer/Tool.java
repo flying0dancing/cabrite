@@ -1,7 +1,7 @@
 package com.csdental.meshviewer;
 
-import com.csdental.web.IWebDriverWrapper;
-import com.csdental.web.IWebElementWrapper;
+import com.mainland.web.IWebDriverWrapper;
+import com.mainland.web.IWebElementWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

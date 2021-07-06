@@ -1,13 +1,15 @@
 package com.csdental.meshviewer;
 
-import com.csdental.test.BaseTest;
+import com.mainland.test.BaseTest;
 import com.csdental.test.IComFolder;
-import com.csdental.util.IProp;
-import com.csdental.util.Strs;
-import com.csdental.web.IWebDriverWrapper;
-import com.csdental.web.WebDriverFactory;
+import com.mainland.util.IProp;
+import com.mainland.util.ImageUtil;
+import com.mainland.util.Strs;
+import com.mainland.web.IWebDriverWrapper;
+import com.mainland.web.WebDriverFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import com.csdental.test.Reporter;
 import org.testng.annotations.*;
@@ -15,7 +17,7 @@ import org.testng.xml.XmlTest;
 
 import java.io.IOException;
 
-import static com.csdental.util.FileUtil.copyDirectory;
+import static com.mainland.util.FileUtil.copyDirectory;
 
 
 public class TestManager extends BaseTest {
@@ -50,6 +52,8 @@ public class TestManager extends BaseTest {
     }
     @BeforeSuite
     public void beforeSuite(ITestContext context){
+        copyDirectory(IComFolder.SOURCE_EXPECTATION_FOLDER,IComFolder.RESULT_ACTUAL_FOLDER);
+
     }
     @AfterSuite
     public void afterSuite(XmlTest xmlTest, ITestContext context) throws IOException {
@@ -61,6 +65,7 @@ public class TestManager extends BaseTest {
             reportFolder=reportFolder+System.getProperty("file.separator")+"html";
             logger.info(reportFolder);
             copyDirectory(IComFolder.SCREENSHOT_FOLDER,reportFolder);
+            copyDirectory(IComFolder.RESULT_ACTUAL_FOLDER,reportFolder);
         }
 
     }
@@ -83,25 +88,61 @@ public class TestManager extends BaseTest {
     }
 
 
-    public String embededScreenShot(String caseFolder,String screenName){
+   /* public String embededScreenShot(String caseFolder,String screenName,String msg){
+        Reporter.log(msg);
         String screenshotPath=getWebDriverWrapper().takeScreenshotAs(IComFolder.SCREENSHOT_FOLDER+caseFolder+screenName+ IProp.SCREENSHOT_TYPE);
-        Integer getScreenShotsIndex=screenshotPath.lastIndexOf(System.getProperty("file.separator")+IComFolder.SCREENSHOT_FOLDER_NAME+System.getProperty("file.separator"));
-        String path=".."+System.getProperty("file.separator")+".."+screenshotPath.substring(getScreenShotsIndex);
+        String path=Strs.briefPath(screenshotPath,IComFolder.SCREENSHOT_FOLDER_NAME);
+        logger.info("take screenshot, screenshot at {}",path);
+        Reporter.log("take screenshot, screenshot at "+path);
+        return screenshotPath;
+    }*/
+
+
+    public String embededScreenShot(String screenName,String msg){
+        Reporter.log(msg);
+        String screenshotPath=getWebDriverWrapper().takeScreenshotAs(IComFolder.SCREENSHOT_FOLDER+screenName+ IProp.SCREENSHOT_TYPE);
+        String path=Strs.briefPath(screenshotPath,IComFolder.SCREENSHOT_FOLDER_NAME);
+        logger.info("take screenshot, screenshot at {}",path);
+        Reporter.log("take screenshot, screenshot at "+path);
+        //Reporter.log(Helper.getTestReportStyle(Strs.convertFilePath(path),"screenshot is "+screenName));
+        return screenshotPath;
+    }
+    public String embededScreenShot(String screenName){
+        String screenshotPath=getWebDriverWrapper().takeScreenshotAs(IComFolder.SCREENSHOT_FOLDER+screenName+ IProp.SCREENSHOT_TYPE);
+        String path=Strs.briefPath(screenshotPath,IComFolder.SCREENSHOT_FOLDER_NAME);
         logger.info("take screenshot, screenshot at {}",path);
         Reporter.log("take screenshot, screenshot at "+path);
         //Reporter.log(Helper.getTestReportStyle(Strs.convertFilePath(path),"screenshot is "+screenName));
         return screenshotPath;
     }
 
+    public void embededComparedScreen(String logPrefix,String screenshotPath){
+        String path=Strs.briefPath(screenshotPath,IComFolder.RESULT_ACTUAL_FOLDER_NAME);
+        logger.info(logPrefix+path);
+        Reporter.log(logPrefix+path);
+        return ;
+    }
 
-    public String embededScreenShot(String screenName){
-        String screenshotPath=getWebDriverWrapper().takeScreenshotAs(IComFolder.SCREENSHOT_FOLDER+screenName+ IProp.SCREENSHOT_TYPE);
-        Integer getScreenShotsIndex=screenshotPath.lastIndexOf(System.getProperty("file.separator")+IComFolder.SCREENSHOT_FOLDER_NAME+System.getProperty("file.separator"));
-        String path=".."+System.getProperty("file.separator")+".."+screenshotPath.substring(getScreenShotsIndex);
-        logger.info("take screenshot, screenshot at {}",path);
-        Reporter.log("take screenshot, screenshot at "+path);
-        //Reporter.log(Helper.getTestReportStyle(Strs.convertFilePath(path),"screenshot is "+screenName));
-        return screenshotPath;
+    /**
+     * compare higher with expectedFile, put result in resultFolder.
+     * get expected tolerance by compared lower with middle, middle with higher;
+     * @param lower
+     * @param middle
+     * @param higher
+     * @param resultFolder
+     * @param expectedFile
+     */
+    public void embededCompareResult(String lower,String middle, String higher, String resultFolder, String expectedFile){
+        //using is embededCompareResult(lower,middle,higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.SOURCE_EXPECTATION_FOLDER+expectationFile)
+        double tolerance= ImageUtil.getTolerance(lower,middle,higher, resultFolder);
+        Reporter.log(String.format("expected similar percent is  %.6f", tolerance));
+        String[] compareResult=ImageUtil.compareWithExpectation(higher,expectedFile,resultFolder);
+        double actual_tolerance= Double.parseDouble(compareResult[0]);
+        embededComparedScreen("expected result(before compared) is ",Strs.reviseFilePath(expectedFile));
+        embededComparedScreen("expected result(after compared) is ",compareResult[2]);
+        embededComparedScreen("actual result(after compared) is ",compareResult[1]);
+        Reporter.log(String.format("actual similar percent is  %.6f", actual_tolerance));
+        Assert.assertTrue(actual_tolerance>=tolerance,"actual tolerance should smaller than expectation.");
     }
 
 }
