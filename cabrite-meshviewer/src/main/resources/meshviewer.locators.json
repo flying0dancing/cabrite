@@ -33,6 +33,7 @@
 
   {"id": "display.buccalBite","type": "WebElement","by": "xpath","expr": "//h5[text()='Buccal Bite']","description": "Buccal Bite in display page"},
   {"id": "display.buccalBiteCount","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div","description": "Buccal Bite in display page"},
+  {"id": "display.buccalBiteNames","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div//h6[not(@name)]","description": "display page Buccal Bite Name"},
   {"id": "display.buccalBiteRadioStatus","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//input[@name='radio-button']","description": "Buccal Bite Radio Status in display page"},
   {"id": "display.buccalBiteRadio","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//span[input/@name='radio-button']","description": "Buccal Bite Radio  in display page"},
 

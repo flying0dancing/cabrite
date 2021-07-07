@@ -50,6 +50,20 @@ public class DisplayPage extends BasePage{
         }
         return 0;
     }
+
+    public String getArchNameByIndex(int index){
+        IWebElementWrapper eltW=element("display.dentalArch");
+        if(eltW.isPresent()){
+            IWebElementWrapper elt=element("display.dentalArchNames");
+            List<IWebElementWrapper> elts=elt.findElements();
+            if(index>0 && elts!=null && index<=elts.size()){
+                System.out.println(elts.get(index-1).getText());
+                return elts.get(index-1).getText();
+            }
+        }
+        return null;
+    }
+
     //return 0,1,...
     public Integer getArchCount(){
         IWebElementWrapper eltW=element("display.dentalArch");
@@ -447,6 +461,44 @@ public class DisplayPage extends BasePage{
         String text=elt.getText();
         logger.info("element[{}][{}] value is {}",locator,replacements,text);
         return Integer.parseInt(text);
+    }
+
+    /**
+     * using Item's name to get its index in Buccal Bite, if 0 means not find index.
+     * @param biteNames
+     * @return
+     */
+    public int getIndexOfBiteByName(String... biteNames){
+        IWebElementWrapper eltW=element("display.buccalBite");
+        if(eltW.isPresent()){
+            IWebElementWrapper elt=element("display.buccalBiteNames");
+            List<IWebElementWrapper> elts=elt.findElements();
+
+            for (int i = 0; i < elts.size(); i++) {
+                String name=elts.get(i).getText();
+                //logger.info(name);
+                for (int j = 0; j < biteNames.length; j++) {
+                    if(name.equalsIgnoreCase(biteNames[j])){
+                        //logger.info("find [{}] at index [{}]",archNames[j],i+1);
+                        return i+1;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    public String getBiteNameByIndex(int index){
+        IWebElementWrapper eltW=element("display.buccalBite");
+        if(eltW.isPresent()){
+            IWebElementWrapper elt=element("display.buccalBiteNames");
+            List<IWebElementWrapper> elts=elt.findElements();
+            if(index>0 && elts!=null && index<=elts.size()){
+                System.out.println(elts.get(index-1).getText());
+                return elts.get(index-1).getText();
+            }
+        }
+        return null;
     }
 
 }

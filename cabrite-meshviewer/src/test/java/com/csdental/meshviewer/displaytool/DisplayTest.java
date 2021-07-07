@@ -12,7 +12,30 @@ import org.testng.annotations.Test;
 @Test(groups={"smoke","function_test"})
 public class DisplayTest extends TestManager {
     //String uploadFileName="Common_HD3D/common.HD3D.off[1.0.3.600]/Franklin_Benjamin_[2021-03-03_09-51-18].dcm";
-    String uploadFileName="FullArchWithExtraBite/a870192f-f6df-40ae-b134-a9d4f198945e_Orthodontics.dcm";
+    //String uploadFileName="FullArchWithExtraBite/a870192f-f6df-40ae-b134-a9d4f198945e_Orthodontics.dcm";
+    String uploadFileName="FullArchWithExtraBite_ModifyName/8cdf9f8e-d8ca-43f7-9ef8-16db7b098afd_Orthodontics.dcm";
+    public void checkCommonExtraBitesName(ITestContext context){
+        Reporter.testStart();
+        String caseFolder=context.getName()+"/";
+        String importFile=context.getCurrentXmlTest().getParameter("importFile");
+        String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
+        String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
+        String screenWithinCase=caseFolder+methodName;
+        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        if(meshViewPage.isThePage()){
+            uploadDCM(meshViewPage,uploadFileName);
+            DisplayPage displayPage=meshViewPage.clickDisplay();
+            Reporter.log("Click Display tab on left bar");
+            embededScreenShot(screenWithinCase+"_default","Default status in Display tab");
+            displayPage.getArchNameByIndex(1);
+            displayPage.getArchNameByIndex(2);
+            displayPage.getBiteNameByIndex(1);
+            displayPage.getBiteNameByIndex(2);
+            displayPage.getBiteNameByIndex(3);
+            displayPage.getBiteNameByIndex(4);
+            displayPage.getBiteNameByIndex(5);
+        }
+    }
     public void checkCommonNormalBite(ITestContext context){
         Reporter.testStart();
         String caseFolder=context.getName()+"/";
