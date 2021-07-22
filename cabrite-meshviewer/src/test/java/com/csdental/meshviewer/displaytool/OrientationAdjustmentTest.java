@@ -32,25 +32,29 @@ public class OrientationAdjustmentTest  extends TestManager {
             Reporter.log("select rotation step "+text);
             Assert.assertEquals(oa.selectRotationStep(text),text,"Cann't select "+text);
 
-            Integer angle=178;//181
+            Integer angle=178;
             String angleResult=oa.clickXAnglePlus(angle);
             String lower=embededScreenShot(screenWithinCase+"_lower_"+angleResult,"click X Angle Increase("+angle.toString()+" times), get angle value is "+angleResult);
+            Assert.assertEquals(angleResult,"89","angle should be same as expected result");
 
-            oa.clickXAnglePlus();//179
+            angleResult=oa.clickXAnglePlus();//179
             String middle=embededScreenShot(screenWithinCase+"_middle_"+angleResult,"click X Angle Reset(1 times), get angle value is "+angleResult);
+            Assert.assertEquals(angleResult,"89.5","angle should be same as expected result");
 
-            oa.clickXAnglePlus();
+
+            angleResult=oa.clickXAnglePlus();
             String higher=embededScreenShot(screenWithinCase+"_higher_"+angleResult,"click X Angle Reset(1 times), get angle value is "+angleResult);
+            Assert.assertEquals(angleResult,"90","angle should be same as expected result");
             //compare result
             embededCompareResult(lower,middle,higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
 
             angleResult=oa.clickXAnglePlus();
             embededScreenShot(screenWithinCase+"_max_"+angleResult,"click X Angle Reset(1 times), get angle value is "+angleResult);
-            Assert.assertEquals(angleResult,"90","angle value is not same as expected result");
+            Assert.assertEquals(angleResult,"90","angle value should be same as expected result");
 
             angleResult=oa.clickXAngleReset();
             embededScreenShot(screenWithinCase+"_reset_"+angleResult,"click X Angle Reset(1 times), get angle value is "+angleResult);
-            Assert.assertEquals(angleResult,"0","angle value is not same as expected result");
+            Assert.assertEquals(angleResult,"0","angle value should be same as expected result");
         }
         Reporter.testEnd();
     }

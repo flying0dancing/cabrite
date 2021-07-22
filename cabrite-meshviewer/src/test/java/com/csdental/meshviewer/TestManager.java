@@ -142,7 +142,7 @@ public class TestManager extends BaseTest {
         embededComparedScreen("expected result(after compared) is ",compareResult[2]);
         embededComparedScreen("actual result(after compared) is ",compareResult[1]);
         Reporter.log(String.format("actual similar percent is  %.6f", actual_tolerance));
-        Assert.assertTrue(actual_tolerance>=tolerance,"actual tolerance should smaller than expectation.");
+        Assert.assertTrue(actual_tolerance>=tolerance,"actual tolerance should larger than expectation.");
     }
 
 }

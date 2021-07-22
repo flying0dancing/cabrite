@@ -23,17 +23,25 @@ public class DisplayTest extends TestManager {
         String screenWithinCase=caseFolder+methodName;
         MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
         if(meshViewPage.isThePage()){
-            uploadDCM(meshViewPage,uploadFileName);
+            uploadDCM(meshViewPage,importFile);
             DisplayPage displayPage=meshViewPage.clickDisplay();
             Reporter.log("Click Display tab on left bar");
             embededScreenShot(screenWithinCase+"_default","Default status in Display tab");
-            displayPage.getArchNameByIndex(1);
-            displayPage.getArchNameByIndex(2);
-            displayPage.getBiteNameByIndex(1);
-            displayPage.getBiteNameByIndex(2);
-            displayPage.getBiteNameByIndex(3);
-            displayPage.getBiteNameByIndex(4);
-            displayPage.getBiteNameByIndex(5);
+            String labelStr=displayPage.getArchNameByIndex(1);
+            Reporter.log("check labels in Dental Arch and Buccal Bite");
+            Assert.assertEquals("Maxillary Anatomy at index 1 in Dental Arch","Maxillary Anatomy",labelStr);
+            labelStr=displayPage.getArchNameByIndex(2);
+            Assert.assertEquals("Mandibular Anatomy at index 2 in Dental Arch","Mandibular Anatomy",labelStr);
+            labelStr=displayPage.getBiteNameByIndex(1);
+            Assert.assertEquals("Normal Bite at index 1 in Buccal Bite","Normal Bite",labelStr);
+            labelStr=displayPage.getBiteNameByIndex(2);
+            Assert.assertEquals("Extra Bite 1 at index 2 in Buccal Bite","Extra Bite change name extra 1",labelStr);
+            labelStr=displayPage.getBiteNameByIndex(3);
+            Assert.assertEquals("Extra Bite 2 at index 3 in Buccal Bite","Extra Bite modify name extra2",labelStr);
+            labelStr=displayPage.getBiteNameByIndex(4);
+            Assert.assertEquals("Extra Bite 3 at index 4 in Buccal Bite","Extra Bite xiu gai name extra3",labelStr);
+            labelStr=displayPage.getBiteNameByIndex(5);
+            Assert.assertEquals("Extra Bite 4 at index 5 in Buccal Bite","Extra Bite xiu gai mingzi extra4",labelStr);
         }
     }
     public void checkCommonNormalBite(ITestContext context){
@@ -48,43 +56,31 @@ public class DisplayTest extends TestManager {
             uploadDCM(meshViewPage,importFile);
             DisplayPage displayPage=meshViewPage.clickDisplay();
             Reporter.log("Click Display tab on left bar");
-            embededScreenShot(screenWithinCase+"_default","Default status in Display tab");
+            embededScreenShot(screenWithinCase+"_default","Check default status in Display tab");
             int archCount=displayPage.getArchCount();
             Assert.assertEquals("Dental Arch should be 2",2,archCount);
-            //displayPage.getArchCount();
-            //displayPage.getBiteCount();
             int indexofMaxillary=displayPage.getIndexOfArchByName("Maxillary","Maxillary Anatomy");
-            Reporter.log("Index of Maxillary (Anatomy) should be 1");
             Assert.assertEquals("Index of Maxillary (Anatomy) should be 1",1,indexofMaxillary);
             String defaultStatusOfMaxillary=displayPage.getMaxillaryStatus();
-            Reporter.log("Default status of Maxillary (Anatomy) should be Show");
             Assert.assertEquals("Default status of Maxillary (Anatomy) should be Show","Show",defaultStatusOfMaxillary);
             int defaultValueofMaxillary=displayPage.getMaxillaryValue();
-            Reporter.log("Default transparent value of Maxillary (Anatomy) should be 0");
             Assert.assertEquals("Default transparent value of Maxillary (Anatomy) should be 0",0,defaultValueofMaxillary);
 
             int indexofMandibular=displayPage.getIndexOfArchByName("Mandibular","Mandibular Anatomy");
-            Reporter.log("Index of Mandibular (Anatomy) should be 2");
             Assert.assertEquals("Index of Mandibular (Anatomy) should be 2",2,indexofMandibular);
             String defaultStatusOfMandibular=displayPage.getMandibularStatus();
-            Reporter.log("Default status of Mandibular (Anatomy) should be Show");
             Assert.assertEquals("Default status of Mandibular (Anatomy) should be Show","Show",defaultStatusOfMandibular);
             int defaultValueofMandibular=displayPage.getMandibularValue();
-            Reporter.log("Default transparent value of Mandibular (Anatomy) should be 0");
             Assert.assertEquals("Default transparent value of Mandibular (Anatomy) should be 0",0,defaultValueofMandibular);
             int bitecount=displayPage.getBiteCount();
-            Reporter.log("Display page should contains Normal Bite");
             Assert.assertTrue("Display page should contains Normal Bite",bitecount>0);
             Boolean isCheckedNormalBite=displayPage.isCheckedNormalBite();
-            Reporter.log("Display page's Normal Bite should be checked");
             Assert.assertTrue("Display page's Normal Bite should be checked",isCheckedNormalBite);
 
             displayPage.checkNormalBite();
             String defaultNormalBiteStatus=displayPage.getNormalBiteStatus();
-            Reporter.log("Default status of Normal bite should be Hide");
             Assert.assertEquals("Default status of Normal bite should be Hide","Hide",defaultNormalBiteStatus);
             int defaultValueofNormalBite=displayPage.getNormalBiteValue();
-            Reporter.log("Default transparent value of Normal bite  should be 0");
             Assert.assertEquals("Default transparent value of Normal bite should be 0",0,defaultValueofNormalBite);
 
             displayPage.showOrHideNormalBite();
@@ -120,45 +116,33 @@ public class DisplayTest extends TestManager {
             uploadDCM(meshViewPage,importFile);
             DisplayPage displayPage=meshViewPage.clickDisplay();
             Reporter.log("Click Display tab on left bar");
-            embededScreenShot(screenWithinCase+"_default","Default status in Display tab");
+            embededScreenShot(screenWithinCase+"_default","Check default status in Display tab");
 
             int archCount=displayPage.getArchCount();
             Assert.assertEquals("Dental Arch should be 2",2,archCount);
-            //displayPage.getArchCount();
-            //displayPage.getBiteCount();
             int indexofMaxillary=displayPage.getIndexOfArchByName("Maxillary","Maxillary Anatomy");
-            Reporter.log("Index of Maxillary (Anatomy) should be 1");
             Assert.assertEquals("Index of Maxillary (Anatomy) should be 1",1,indexofMaxillary);
             String defaultStatusOfMaxillary=displayPage.getMaxillaryStatus();
-            Reporter.log("Default status of Maxillary (Anatomy) should be Show");
             Assert.assertEquals("Default status of Maxillary (Anatomy) should be Show","Show",defaultStatusOfMaxillary);
             int defaultValueofMaxillary=displayPage.getMaxillaryValue();
-            Reporter.log("Default transparent value of Maxillary (Anatomy) should be 0");
             Assert.assertEquals("Default transparent value of Maxillary (Anatomy) should be 0",0,defaultValueofMaxillary);
 
             int indexofMandibular=displayPage.getIndexOfArchByName("Mandibular","Mandibular Anatomy");
-            Reporter.log("Index of Mandibular (Anatomy) should be 2");
             Assert.assertEquals("Index of Mandibular (Anatomy) should be 2",2,indexofMandibular);
             String defaultStatusOfMandibular=displayPage.getMandibularStatus();
-            Reporter.log("Default status of Mandibular (Anatomy) should be Show");
             Assert.assertEquals("Default status of Mandibular (Anatomy) should be Show","Show",defaultStatusOfMandibular);
             int defaultValueofMandibular=displayPage.getMandibularValue();
-            Reporter.log("Default transparent value of Mandibular (Anatomy) should be 0");
             Assert.assertEquals("Default transparent value of Mandibular (Anatomy) should be 0",0,defaultValueofMandibular);
 
             int bitecount=displayPage.getBiteCount();
-            Reporter.log("Display page Bite Count should be more than 1");
             Assert.assertTrue("Display page Bite Count should be more than 1",bitecount>1);
             Boolean isCheckedNormalBite=displayPage.isCheckedNormalBite();
-            Reporter.log("Display page's Normal Bite should be checked");
             Assert.assertTrue("Display page's Normal Bite should be checked",isCheckedNormalBite);
 
             displayPage.checkNormalBite();
             String defaultNormalBiteStatus=displayPage.getNormalBiteStatus();
-            Reporter.log("Default status of Normal bite should be Hide");
             Assert.assertEquals("Default status of Normal bite should be Hide","Hide",defaultNormalBiteStatus);
             int defaultValueofNormalBite=displayPage.getNormalBiteValue();
-            Reporter.log("Default transparent value of Normal bite  should be 0");
             Assert.assertEquals("Default transparent value of Normal bite should be 0",0,defaultValueofNormalBite);
 
             for (int i = 1; i < 5; i++) {
@@ -166,11 +150,11 @@ public class DisplayTest extends TestManager {
                 int index=i+1;
                 String tmpName=screenWithinCase+i;
                 displayPage.checkBite(index);
-                embededScreenShot(tmpName+"_CheckExtraBite"+i,"check Extra Bite"+i);
+                embededScreenShot(tmpName+"_Check","check Extra Bite"+i);
                 String status=displayPage.getBiteStatus(index);
                 Assert.assertEquals("Extra Bite "+i+" should be hidden(default status).","Hide",status);
                 displayPage.showOrHideBite(index);
-                embededScreenShot(tmpName+"_ShowExtraBite"+i,"click to show Extra Bite"+i);
+                embededScreenShot(tmpName+"_Show","click to show Extra Bite"+i);
                 status=displayPage.getBiteStatus(index);
                 Assert.assertEquals("Extra Bite "+i+" should be shown.","Show",status);
 
@@ -189,7 +173,7 @@ public class DisplayTest extends TestManager {
                     String higher=embededScreenShot(tmpName+"_Transparent_50","move Extra Bite "+i+" Slider to the half");
                 }
                 displayPage.showOrHideBite(index);
-                embededScreenShot(tmpName+"_HideExtraBite"+i,"click to hide Extra Bite "+i);
+                embededScreenShot(tmpName+"_Hide","click to hide Extra Bite "+i);
                 status=displayPage.getBiteStatus(index);
                 Assert.assertEquals("Extra Bite "+i+" should be hidden.","Hide",status);
             }
