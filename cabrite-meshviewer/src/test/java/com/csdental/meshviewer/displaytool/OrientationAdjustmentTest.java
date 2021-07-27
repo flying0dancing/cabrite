@@ -32,31 +32,258 @@ public class OrientationAdjustmentTest  extends TestManager {
             Reporter.log("select rotation step "+text);
             Assert.assertEquals(oa.selectRotationStep(text),text,"Cann't select "+text);
 
-            Integer angle=178;
+            Integer angle=178;//181
             String angleResult=oa.clickXAnglePlus(angle);
-            String lower=embededScreenShot(screenWithinCase+"_lower_"+angleResult,"click X Angle Increase("+angle.toString()+" times), get angle value is "+angleResult);
-            Assert.assertEquals(angleResult,"89","angle should be same as expected result");
+            String lower=embededScreenShot(screenWithinCase+"_lower_"+angleResult,"click X Angle Increase("+angle.toString()+" times), get angle is "+angleResult+"[lower]");
 
-            angleResult=oa.clickXAnglePlus();//179
-            String middle=embededScreenShot(screenWithinCase+"_middle_"+angleResult,"click X Angle Reset(1 times), get angle value is "+angleResult);
-            Assert.assertEquals(angleResult,"89.5","angle should be same as expected result");
+            oa.clickXAnglePlus();//179
+            String middle=embededScreenShot(screenWithinCase+"_middle_"+angleResult,"click X Angle Increase(1 times), get angle is "+angleResult+"[middle]");
 
-
-            angleResult=oa.clickXAnglePlus();
-            String higher=embededScreenShot(screenWithinCase+"_higher_"+angleResult,"click X Angle Reset(1 times), get angle value is "+angleResult);
-            Assert.assertEquals(angleResult,"90","angle should be same as expected result");
+            angle=2;
+            oa.clickXAnglePlus(angle);
+            String higher=embededScreenShot(screenWithinCase+"_higher_"+angleResult,"click X Angle Increase("+angle.toString()+" times), get angle is "+angleResult+"[higher]");
             //compare result
             embededCompareResult(lower,middle,higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
 
-            angleResult=oa.clickXAnglePlus();
-            embededScreenShot(screenWithinCase+"_max_"+angleResult,"click X Angle Reset(1 times), get angle value is "+angleResult);
-            Assert.assertEquals(angleResult,"90","angle value should be same as expected result");
+            //angleResult=oa.clickXAnglePlus();
+            //embededScreenShot(screenWithinCase+"_max_"+angleResult,"click X Angle Increase(1 times), get angle is "+angleResult);
+            Assert.assertEquals(angleResult,"90","angle value is not same as expected result");
 
             angleResult=oa.clickXAngleReset();
-            embededScreenShot(screenWithinCase+"_reset_"+angleResult,"click X Angle Reset(1 times), get angle value is "+angleResult);
-            Assert.assertEquals(angleResult,"0","angle value should be same as expected result");
+            embededScreenShot(screenWithinCase+"_reset_"+angleResult,"click X Angle Reset(1 times), get angle is "+angleResult);
+            Assert.assertEquals(angleResult,"0","angle value is not same as expected result");
         }
         Reporter.testEnd();
     }
+
+    @Test
+    public void checkRotationXDecreaseMinimum(ITestContext context){
+        Reporter.testStart();
+        String caseFolder=context.getName()+"/";
+        String importFile=context.getCurrentXmlTest().getParameter("importFile");
+        String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
+        String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
+        String screenWithinCase=caseFolder+methodName;
+        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        if(meshViewPage.isThePage()){
+
+            uploadDCM(meshViewPage,importFile);
+
+            OrientationAdjustment oa= meshViewPage.clickOrientationAdjustment();
+
+            Reporter.log("click Orientation Adjustment tab on left bar");
+            String text="0.1";
+            Reporter.log("select rotation step "+text);
+            Assert.assertEquals(oa.selectRotationStep(text),text,"Cann't select "+text);
+
+            Integer clickTimes=98;
+            String clickResult=oa.clickXAngleMinus(clickTimes);
+            String higher=embededScreenShot(screenWithinCase+"_lower_"+clickResult,"click angle Decrease("+clickTimes.toString()+" times), get angle is "+clickResult+"[higher]");
+            Assert.assertEquals(clickResult,"-96","angle is not same as expected result");
+
+            clickTimes=1;
+            clickResult=oa.clickXAngleMinus();
+            String middle=embededScreenShot(screenWithinCase+"_middle_"+clickResult,"click angle Decrease("+clickTimes.toString()+" times), get angle is "+clickResult+"[middle]");
+            Assert.assertEquals(clickResult,"-98","angle is not same as expected result");
+
+            text="0.1";
+            Reporter.log("select rotation step "+text);
+            Assert.assertEquals(oa.selectRotationStep(text),text,"Cann't select "+text);
+
+            clickTimes=1;
+            clickResult=oa.clickXAngleMinus(clickTimes);
+            String lower=embededScreenShot(screenWithinCase+"_higher_"+clickResult,"click angle Decrease("+clickTimes.toString()+" times), get angle is "+clickResult+"[lower]");
+            Assert.assertEquals(clickResult,"-90","angle is not same as expected result");
+
+            embededCompareResult(higher,middle,lower, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
+
+            clickResult=oa.clickXAngleReset();
+            embededScreenShot(screenWithinCase+"_reset_"+clickResult,"click distance Reset(1 times), get distance is "+clickResult);
+            Assert.assertEquals(clickResult,"0","angle is not same as expected result");
+        }
+        Reporter.testEnd();
+    }
+
+    @Test
+    public void checkRotationXReset(ITestContext context){
+        Reporter.testStart();
+        String caseFolder=context.getName()+"/";
+        String importFile=context.getCurrentXmlTest().getParameter("importFile");
+        String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
+        String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
+        String screenWithinCase=caseFolder+methodName;
+        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        if(meshViewPage.isThePage()){
+
+            uploadDCM(meshViewPage,importFile);
+
+            OrientationAdjustment oa= meshViewPage.clickOrientationAdjustment();
+
+            Reporter.log("click Orientation Adjustment tab on left bar");
+            String text="0.5";
+            Reporter.log("select rotation step "+text);
+            Assert.assertEquals(oa.selectRotationStep(text),text,"Cann't select "+text);
+
+            Integer clickTimes=3;
+            String clickResult=oa.clickXAngleMinus(clickTimes);
+            embededScreenShot(screenWithinCase+"_minus_"+clickResult,"click X minus("+clickTimes.toString()+" times), get angle is "+clickResult);
+            Assert.assertEquals(clickResult,"-1.5","angle is not same as expected result");
+
+            clickTimes=1;
+            clickResult=oa.clickXAnglePlus();
+            String lower=embededScreenShot(screenWithinCase+"_lower_"+clickResult,"click X minus("+clickTimes.toString()+" times), get angle is "+clickResult+"[lower]");
+            Assert.assertEquals(clickResult,"-1","angle is not same as expected result");
+
+            clickResult=oa.clickXAnglePlus();
+            String middle=embededScreenShot(screenWithinCase+"_middle_"+clickResult,"click X minus("+clickTimes.toString()+" times), get angle is "+clickResult+"[middle]");
+            Assert.assertEquals(clickResult,"-0.5","angle is not same as expected result");
+
+            clickResult=oa.clickXAngleReset();
+            String higher=embededScreenShot(screenWithinCase+"_higher_"+clickResult,"click X Reset(1 times), get angle is "+clickResult+"[higher]");
+            Assert.assertEquals(clickResult,"0","angle is not same as expected result");
+
+            embededCompareResult(lower,middle,higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
+
+        }
+        Reporter.testEnd();
+    }
+
+    @Test
+    public void checkRotationYReset(ITestContext context){
+        Reporter.testStart();
+        String caseFolder=context.getName()+"/";
+        String importFile=context.getCurrentXmlTest().getParameter("importFile");
+        String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
+        String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
+        String screenWithinCase=caseFolder+methodName;
+        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        if(meshViewPage.isThePage()){
+
+            uploadDCM(meshViewPage,importFile);
+
+            OrientationAdjustment oa= meshViewPage.clickOrientationAdjustment();
+
+            Reporter.log("click Orientation Adjustment tab on left bar");
+            String text="0.5";
+            Reporter.log("select rotation step "+text);
+            Assert.assertEquals(oa.selectRotationStep(text),text,"Cann't select "+text);
+
+            Integer clickTimes=3;
+            String clickResult=oa.clickYAngleMinus(clickTimes);
+            embededScreenShot(screenWithinCase+"_minus_"+clickResult,"click Y minus("+clickTimes.toString()+" times), get angle is "+clickResult);
+            Assert.assertEquals(clickResult,"-1.5","angle is not same as expected result");
+
+            clickTimes=1;
+            clickResult=oa.clickYAnglePlus();
+            String lower=embededScreenShot(screenWithinCase+"_lower_"+clickResult,"click Y minus("+clickTimes.toString()+" times), get angle is "+clickResult+"[lower]");
+            Assert.assertEquals(clickResult,"-1","angle is not same as expected result");
+
+            clickResult=oa.clickYAnglePlus();
+            String middle=embededScreenShot(screenWithinCase+"_middle_"+clickResult,"click Y minus("+clickTimes.toString()+" times), get angle is "+clickResult+"[middle]");
+            Assert.assertEquals(clickResult,"-0.5","angle is not same as expected result");
+
+            clickResult=oa.clickYAngleReset();
+            String higher=embededScreenShot(screenWithinCase+"_higher_"+clickResult,"click Y Reset(1 times), get angle is "+clickResult+"[higher]");
+            Assert.assertEquals(clickResult,"0","angle is not same as expected result");
+
+            embededCompareResult(lower,middle,higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
+
+        }
+        Reporter.testEnd();
+    }
+    @Test
+    public void checkRotationZReset(ITestContext context){
+        Reporter.testStart();
+        String caseFolder=context.getName()+"/";
+        String importFile=context.getCurrentXmlTest().getParameter("importFile");
+        String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
+        String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
+        String screenWithinCase=caseFolder+methodName;
+        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        if(meshViewPage.isThePage()){
+
+            uploadDCM(meshViewPage,importFile);
+
+            OrientationAdjustment oa= meshViewPage.clickOrientationAdjustment();
+
+            Reporter.log("click Orientation Adjustment tab on left bar");
+            String text="0.5";
+            Reporter.log("select rotation step "+text);
+            Assert.assertEquals(oa.selectRotationStep(text),text,"Cann't select "+text);
+
+            Integer clickTimes=3;
+            String clickResult=oa.clickZAngleMinus(clickTimes);
+            embededScreenShot(screenWithinCase+"_minus_"+clickResult,"click Z minus("+clickTimes.toString()+" times), get angle is "+clickResult);
+            Assert.assertEquals(clickResult,"-1.5","angle is not same as expected result");
+
+            clickTimes=1;
+            clickResult=oa.clickZAnglePlus();
+            String lower=embededScreenShot(screenWithinCase+"_lower_"+clickResult,"click Z minus("+clickTimes.toString()+" times), get angle is "+clickResult+"[lower]");
+            Assert.assertEquals(clickResult,"-1","angle is not same as expected result");
+
+            clickResult=oa.clickZAnglePlus();
+            String middle=embededScreenShot(screenWithinCase+"_middle_"+clickResult,"click Z minus("+clickTimes.toString()+" times), get angle is "+clickResult+"[middle]");
+            Assert.assertEquals(clickResult,"-0.5","angle is not same as expected result");
+
+            clickResult=oa.clickZAngleReset();
+            String higher=embededScreenShot(screenWithinCase+"_higher_"+clickResult,"click Z Reset(1 times), get angle is "+clickResult+"[higher]");
+            Assert.assertEquals(clickResult,"0","angle is not same as expected result");
+
+            embededCompareResult(lower,middle,higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
+
+        }
+        Reporter.testEnd();
+    }
+    @Test
+    public void checkResetAll(ITestContext context){
+        Reporter.testStart();
+        String caseFolder=context.getName()+"/";
+        String importFile=context.getCurrentXmlTest().getParameter("importFile");
+        String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
+        String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
+        String screenWithinCase=caseFolder+methodName;
+        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        if(meshViewPage.isThePage()){
+
+            uploadDCM(meshViewPage,importFile);
+
+            OrientationAdjustment oa= meshViewPage.clickOrientationAdjustment();
+
+            Reporter.log("click Orientation Adjustment tab on left bar");
+            String lower=embededScreenShot(screenWithinCase+"_default","default status");
+            String text="0.5";
+            Reporter.log("select rotation step "+text);
+            Assert.assertEquals(oa.selectRotationStep(text),text,"Cann't select "+text);
+
+            Integer clickTimes=3;
+            String clickResult=oa.clickXAngleMinus(clickTimes);
+            embededScreenShot(screenWithinCase+"_AngleX_"+clickResult,"click X minus("+clickTimes.toString()+" times), get angle is "+clickResult);
+            Assert.assertEquals(clickResult,"-1.5","angle is not same as expected result");
+
+            clickResult=oa.clickYAngleMinus(clickTimes);
+            embededScreenShot(screenWithinCase+"_AngleY_"+clickResult,"click Y minus("+clickTimes.toString()+" times), get angle is "+clickResult);
+            Assert.assertEquals(clickResult,"-1.5","angle is not same as expected result");
+
+            clickResult=oa.clickZAngleMinus(clickTimes);
+            embededScreenShot(screenWithinCase+"_AngleZ_"+clickResult,"click Z minus("+clickTimes.toString()+" times), get angle is "+clickResult);
+            Assert.assertEquals(clickResult,"-1.5","angle is not same as expected result");
+
+            text="0.1";
+            Reporter.log("select Movement step "+text);
+            Assert.assertEquals(oa.selectMovementStep(text),text,"Cann't select "+text);
+            clickResult=oa.clickDistancePlus(clickTimes);
+            embededScreenShot(screenWithinCase+"_distance_"+clickResult,"click distance Increase("+clickTimes.toString()+" times), get distance is "+clickResult);
+            Assert.assertEquals(clickResult,"0.3","distance is not same as expected result");
+
+            Boolean resetAll=oa.clickResetAllAdjustments();
+            String higher=embededScreenShot(screenWithinCase+"_resetAll","click Reset ALL");
+            Assert.assertTrue(resetAll,"It does't reset all.");
+
+            embededCompareResult(lower,lower,higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
+
+        }
+        Reporter.testEnd();
+    }
+
 
 }
