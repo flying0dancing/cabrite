@@ -14,7 +14,7 @@ public class OrientationAdjustmentDisTest extends TestManager {
     String uploadFileName="Common_HD3D/common.HD3D.off[1.0.3.600]/Franklin_Benjamin_[2021-03-03_09-51-18].dcm";
     //String uploadFileName="Common+Preparation/c1873bee-98ff-4e48-b9bc-b92064636987_Restore.dcm";
 
-    public void checkMovementZIncreaseMaximum(ITestContext context) {
+    public void checkMovementZMaximum(ITestContext context) {
         Reporter.testStart();
         String caseFolder=context.getName()+"/";
         String importFile=context.getCurrentXmlTest().getParameter("importFile");
@@ -34,28 +34,28 @@ public class OrientationAdjustmentDisTest extends TestManager {
             Assert.assertEquals(oa.selectMovementStep(text),text,"Cann't select "+text);
 
             Integer clickTimes=98;
-            String disResult=oa.clickDistancePlus(clickTimes);
-            String lower=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click clickTimes Increase("+clickTimes.toString()+" times), get clickTimes is "+disResult+"[lower]");
-            Assert.assertEquals(disResult,"4.9","clickTimes is not same as expected result");
+            String valueOnLabel=oa.clickDistancePlus(clickTimes);
+            String lower=embededScreenShot(screenWithinCase+"_distance_"+valueOnLabel,"click Z plus("+clickTimes.toString()+" times), get distance is "+valueOnLabel);
+            Assert.assertEquals(valueOnLabel,"4.9","distance is not same as expected result");
 
-            disResult=oa.clickDistancePlus();
-            String middle=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click clickTimes Increase(1 times), get clickTimes is "+disResult+"[middle]");
-            Assert.assertEquals(disResult,"4.95","clickTimes is not same as expected result");
+            clickTimes=1;
+            valueOnLabel=oa.clickDistancePlus();
+            String middle=embededScreenShot(screenWithinCase+"_distance_"+valueOnLabel,"click Z plus("+clickTimes.toString()+" times), get distance is "+valueOnLabel);
+            Assert.assertEquals(valueOnLabel,"4.95","distance is not same as expected result");
 
             text="0.1";
             Reporter.log("select Movement step "+text);
             Assert.assertEquals(oa.selectMovementStep(text),text,"Cann't select "+text);
 
-            clickTimes=1;
-            disResult=oa.clickDistancePlus(clickTimes);
-            String higher=embededScreenShot(screenWithinCase+"_max_"+disResult,"click clickTimes Increase("+clickTimes.toString()+" times), get clickTimes is "+disResult+"[higher]");
-            Assert.assertEquals(disResult,"5","clickTimes is not same as expected result");
+            valueOnLabel=oa.clickDistancePlus(clickTimes);
+            String higher=embededScreenShot(screenWithinCase+"_distance_"+valueOnLabel,"click Z plus("+clickTimes.toString()+" times), get distance is "+valueOnLabel);
+            Assert.assertEquals(valueOnLabel,"5","distance is not same as expected result");
 
             embededCompareResult(lower,middle,higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
 
-            disResult=oa.clickDistanceReset();
-            embededScreenShot(screenWithinCase+"_reset_"+disResult,"click clickTimes Reset(1 times), get clickTimes is "+disResult);
-            Assert.assertEquals(disResult,"0","clickTimes is not same as expected result");
+            valueOnLabel=oa.clickDistanceReset();
+            embededScreenShot(screenWithinCase+"_reset_"+valueOnLabel,"click Z reset(1 times), get distance is "+valueOnLabel);
+            Assert.assertEquals(valueOnLabel,"0","distance is not same as expected result");
         }
         Reporter.testEnd();
     }
@@ -74,25 +74,26 @@ public class OrientationAdjustmentDisTest extends TestManager {
 
             OrientationAdjustment oa= meshViewPage.clickOrientationAdjustment();
             Reporter.log("click Orientation Adjustment tab on left bar");
-            String text="0.01";
-            Reporter.log("select rotation step "+text);
+            String text="0.1";
+            Reporter.log("select Movement step "+text);
             Assert.assertEquals(oa.selectMovementStep(text),text,"Cann't select "+text);
 
-            Integer clickTimes=50;
-            String disResult=oa.clickDistancePlus(clickTimes);
-            String higher=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click distance Increase(50 times), get distance is "+disResult+"[higher]");
-            Assert.assertEquals(disResult,"0.5","distance is not same as expected result");
+            Integer clickTimes=30;
+            String disResult=oa.clickDistanceMinus(clickTimes);
+            embededScreenShot(screenWithinCase+"_distance_"+disResult,"click Z minus("+clickTimes.toString()+" times), get distance is "+disResult);
+            Assert.assertEquals(disResult,"-3","distance is not same as expected result");
 
-            disResult=oa.clickDistanceMinus(clickTimes);
-            embededScreenShot(screenWithinCase+"_distance_"+disResult,"click distance Decrease(50 times), get distance is "+disResult);
-            Assert.assertEquals(disResult,"0","distance is not same as expected result");
+            clickTimes=10;
+            disResult=oa.clickDistancePlus(clickTimes);
+            String lower=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click Z plus("+clickTimes.toString()+" times), get distance is "+disResult);
+            Assert.assertEquals(disResult,"-2","distance is not same as expected result");
 
-            disResult=oa.clickDistanceMinus(clickTimes);
-            String lower=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click distance Decrease(50 times), get distance is "+disResult+"[lower]");
-            Assert.assertEquals(disResult,"-0.5","distance is not same as expected result");
+            disResult=oa.clickDistancePlus(clickTimes);
+            String middle=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click Z plus("+clickTimes.toString()+" times), get distance is "+disResult);
+            Assert.assertEquals(disResult,"-1","distance is not same as expected result");
 
             disResult=oa.clickDistanceReset();
-            String middle=embededScreenShot(screenWithinCase+"_reset_"+disResult,"click distance Reset(1 times), get distance is "+disResult+"[middle]");
+            String higher=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click Z reset(1 times), get distance is "+disResult);
             Assert.assertEquals(disResult,"0","distance is not same as expected result");
 
             embededCompareResult(lower,middle,higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
@@ -102,7 +103,7 @@ public class OrientationAdjustmentDisTest extends TestManager {
     }
 
     //@Test(enabled = false)
-    public void checkMovementZDecreaseMinimum(ITestContext context) throws Exception {
+    public void checkMovementZMinimum(ITestContext context) throws Exception {
         Reporter.testStart();
         String caseFolder=context.getName()+"/";
         String importFile=context.getCurrentXmlTest().getParameter("importFile");
@@ -122,21 +123,21 @@ public class OrientationAdjustmentDisTest extends TestManager {
 
             Integer clickTimes=40;
             String disResult=oa.clickDistanceMinus(clickTimes);
-            String lower=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click distance Decrease("+clickTimes.toString()+" times), get distance is "+disResult+"[lower]");
+            String higher=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click Z minus("+clickTimes.toString()+" times), get distance is "+disResult);
 
             clickTimes=5;
             disResult=oa.clickDistanceMinus(clickTimes);
-            String middle=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click distance Decrease("+clickTimes.toString()+" times), get distance is "+disResult+"[middle]");
+            String middle=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click Z minus("+clickTimes.toString()+" times), get distance is "+disResult);
 
             clickTimes=6;
             disResult=oa.clickDistanceMinus(clickTimes);//click times: 51
-            String higher=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click distance Decrease("+clickTimes.toString()+" times), get distance is "+disResult+"[higher]");
+            String lower=embededScreenShot(screenWithinCase+"_distance_"+disResult,"click Z minus("+clickTimes.toString()+" times), get distance is "+disResult);
             Assert.assertEquals(disResult,"-5","distance is not same as expected result");
 
-            embededCompareResult(lower,middle,higher, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
+            embededCompareResult(higher,middle,lower, IComFolder.RESULT_ACTUAL_FOLDER +caseFolder, IComFolder.RESULT_EXPECTATION_FOLDER+expectationFile);
 
             disResult=oa.clickDistanceReset();
-            embededScreenShot(screenWithinCase+"_reset_"+disResult,"click distance Reset(1 times), get distance is "+disResult);
+            embededScreenShot(screenWithinCase+"_reset_"+disResult,"click Z reset(1 times), get distance is "+disResult);
             Assert.assertEquals(disResult,"0","distance is not same as expected result");
         }
         Reporter.testEnd();
