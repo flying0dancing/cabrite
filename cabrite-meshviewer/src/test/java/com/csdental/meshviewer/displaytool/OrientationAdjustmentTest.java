@@ -13,6 +13,10 @@ import com.csdental.test.Reporter;
 public class OrientationAdjustmentTest  extends TestManager {
     String uploadFileName="Common_HD3D/common.HD3D.off[1.0.3.600]/Franklin_Benjamin_[2021-03-03_09-51-18].dcm";
 
+    /**
+     * related to QC case 2.1.2 Display Tools_Adjust Oritation_Rotation
+     * @param context
+     */
     @Test
     public void checkRotationXMaximum(ITestContext context) throws Exception {
         Reporter.testStart();
@@ -55,6 +59,10 @@ public class OrientationAdjustmentTest  extends TestManager {
         Reporter.testEnd();
     }
 
+    /**
+     * related to QC case 2.1.2 Display Tools_Adjust Oritation_Rotation
+     * @param context
+     */
     @Test
     public void checkRotationXMinimum(ITestContext context){
         Reporter.testStart();
@@ -103,6 +111,10 @@ public class OrientationAdjustmentTest  extends TestManager {
         Reporter.testEnd();
     }
 
+    /**
+     * related to QC case 2.1.2 Display Tools_Adjust Oritation_Rotation
+     * @param context
+     */
     @Test
     public void checkRotationXReset(ITestContext context){
         Reporter.testStart();
@@ -147,6 +159,10 @@ public class OrientationAdjustmentTest  extends TestManager {
         Reporter.testEnd();
     }
 
+    /**
+     * related to QC case 2.1.2 Display Tools_Adjust Oritation_Rotation
+     * @param context
+     */
     @Test
     public void checkRotationYReset(ITestContext context){
         Reporter.testStart();
@@ -190,6 +206,11 @@ public class OrientationAdjustmentTest  extends TestManager {
         }
         Reporter.testEnd();
     }
+
+    /**
+     * related to QC case 2.1.2 Display Tools_Adjust Oritation_Rotation
+     * @param context
+     */
     @Test
     public void checkRotationZReset(ITestContext context){
         Reporter.testStart();
@@ -234,6 +255,10 @@ public class OrientationAdjustmentTest  extends TestManager {
         Reporter.testEnd();
     }
 
+    /**
+     * related to QC case 2.1.2 Display Tools_Adjust Oritation_Reset all adjustments
+     * @param context
+     */
     @Test
     public void checkResetAll(ITestContext context){
         Reporter.testStart();

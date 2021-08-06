@@ -14,6 +14,10 @@ public class OrientationAdjustmentDisTest extends TestManager {
     String uploadFileName="Common_HD3D/common.HD3D.off[1.0.3.600]/Franklin_Benjamin_[2021-03-03_09-51-18].dcm";
     //String uploadFileName="Common+Preparation/c1873bee-98ff-4e48-b9bc-b92064636987_Restore.dcm";
 
+    /**
+     * related to QC case 2.1.2 Display Tools_Adjust Oritation_Movement
+     * @param context
+     */
     public void checkMovementZMaximum(ITestContext context) {
         Reporter.testStart();
         String caseFolder=context.getName()+"/";
@@ -60,6 +64,10 @@ public class OrientationAdjustmentDisTest extends TestManager {
         Reporter.testEnd();
     }
 
+    /**
+     * related to QC case 2.1.2 Display Tools_Adjust Oritation_Movement
+     * @param context
+     */
     public void checkMovementZReset(ITestContext context) {
         Reporter.testStart();
         String caseFolder=context.getName()+"/";
@@ -102,6 +110,12 @@ public class OrientationAdjustmentDisTest extends TestManager {
         Reporter.testEnd();
     }
 
+
+    /**
+     * related to QC case 2.1.2 Display Tools_Adjust Oritation_Movement
+     * @param context
+     * @throws Exception
+     */
     //@Test(enabled = false)
     public void checkMovementZMinimum(ITestContext context) throws Exception {
         Reporter.testStart();
