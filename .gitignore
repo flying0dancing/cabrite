@@ -48,3 +48,51 @@ Thumbs.db
 *.mov
 *.wmv
 
+#=======
+public
+suite
+cabrite-meshviewer/suites
+target
+test-output
+
+
+# Gradle files
+.gradle/
+build/
+*/build/
+gradlew
+gradlew.bat
+
+# Log Files
+log
+logs
+*.log
+
+# IntelliJ IDEA Project files
+.idea
+*.iml
+*.ipr
+*.iws
+out
+*/*.iml
+
+# Eclipse Project files
+.classpath
+.project
+.settings/
+
+.DS_Store
+Thumbs.db
+
+*.bat
+*.class
+*.apk
+*.ap_
+*.bak
+*.tem
+*.temp
+#.swp
+*.*~
+~*.*
+ignore
+${resultFolder}

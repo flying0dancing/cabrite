@@ -1,0 +1,97 @@
+#!groovy
+pipeline{
+    agent{
+        label 'SHA_AUTOTEST_WMV'
+    }
+    options{
+        timeout(time:60,unit:'MINUTES')
+    }
+    environment {
+        PROJECT_FOLDER ="D:\\mavenproject\\cabrite\\cabrite-meshviewer"
+        RESULT_FOLDER = "D:\\mavenproject\\result-b${env.BUILD_NUMBER}"
+        SUITE_LOCAL    = "${PROJECT_FOLDER}\\suites\\meshviewer_smoke.xml"
+        REPORTS_FOLDER="reportng-reports"
+    }
+    stages{
+        stage('copy artifacts'){
+            steps{
+                echo "start job ${JOB_URL}"
+				echo "branch number: ${env.BUILD_NUMBER}"
+				echo "copy meshviewer from VMV-Daily"
+				//copyArtifacts filter: 'WebMeshViewer.zip', fingerprintArtifacts: true, projectName: 'WMV-Daily', target: 'build'
+            }
+        }
+        stage('copy tools'){
+            steps{
+                echo "copy tools"
+                //bat "robocopy D:\\projects\\ci-meshviewer ci-meshviewer *.* /E /V /ETA"
+
+            }
+        }
+        stage('parallel'){
+            parallel{
+                stage('deploy and launch'){
+                    steps{
+                        echo "deploy and launch meshviewer"
+                       // bat "ci-meshviewer\\launch.bat"
+                    }
+                }
+
+                stage('test'){
+                    steps{
+
+                        echo "test meshviewer"
+                        echo '"${RESULT_FOLDER}${env.BUILD_NUMBER}"'
+                        dir("${PROJECT_FOLDER}"){
+                            bat "mvn clean test -Dresult=${RESULT_FOLDER} -DxmlFileName=${SUITE_LOCAL}"
+
+                        }
+
+                    }
+                }
+
+            }
+        }
+        stage('record report'){
+            steps{
+                script{
+                    echo "reord reports"
+                    echo "xcopy ${RESULT_FOLDER}\\${REPORTS_FOLDER}\\*.* ${REPORTS_FOLDER} /S "
+                    bat returnStdout: true, script: """
+                    rd /S /Q ${REPORTS_FOLDER}
+                    md ${REPORTS_FOLDER}
+                    xcopy ${RESULT_FOLDER}\\${REPORTS_FOLDER}\\*.* ${REPORTS_FOLDER} /S /Y
+                    """
+                }
+
+            }
+        }
+
+
+    }
+
+    post {
+		always {
+			echo 'This will always run'
+			junit allowEmptyResults: true, testResults: "${REPORTS_FOLDER}/*.xml"
+		}
+		success {
+			script{
+				echo 'This will run only if successful'
+
+			    //junit allowEmptyResults: true, testResults: "reportng-reports/*.xml"
+			}
+		}
+		failure {
+			echo 'This will run only if failed'
+			//junit allowEmptyResults: true, testResults: "reportng-reports/*.xml"
+		}
+		unstable {
+			echo 'This will run only if the run was marked as unstable'
+		}
+		changed {
+			echo 'This will run only if the state of the Pipeline has changed'
+			echo 'For example, if the Pipeline was previously failing but is now successful'
+		}
+	}
+}

@@ -1,0 +1,60 @@
+[
+  {"id": "uploadDlg","type": "WebElement","by": "xpath","expr": "//div[contains(text(),'DCM')][contains(text(),'STL')][contains(text(),'PLY')]","description": "upload files"},
+  {"id": "upload","type": "WebElement","by": "xpath","expr": "//label[@role='button']/span/input","description": "upload files"},
+  {"id": "canvas.it","type": "WebElement","by": "xcanvasToolbarpath","expr": "//div/canvas","description": "canvas"},
+  {"id": "canvas.left","type": "WebElement","by": "id","expr": "leftCanvas","description": "leftCanvas"},
+
+  {"id": "leftbar.btn","type": "WebElement","by": "name","expr": "toolbar.btn?","description": "left bar"},
+  {"id": "leftbar.display","type": "WebElement","by": "name","expr": "toolbar.btnDisplay","description": "display"},
+  {"id": "leftbar.occlusionProximity","type": "WebElement","by": "name","expr": "toolbar.btnOcclusionMapping","description": "Occlusion Proximity"},
+  {"id": "leftbar.orientationAdjustment","type": "WebElement","by": "name","expr": "toolbar.btnOrientationAdjustment","description": "Orientation Adjustment"},
+  {"id": "leftbar.gallery","type": "WebElement","by": "name","expr": "toolbar.btnGallery","description": "Gallery"},
+  {"id": "leftbar.imageInfo","type": "WebElement","by": "name","expr": "toolbar.btnImageInfo","description": "Image Information"},
+  {"id": "leftbar.about","type": "WebElement","by": "name","expr": "toolbar.btnInfo","description": "About"},
+
+  {"id": "topbar.btn","type": "WebElement","by": "name","expr": "canvasToolbar.btn?","description": "topbar buttons"},
+  {"id": "topbar.btnFront","type": "WebElement","by": "name","expr": "canvasToolbar.btnViewFront","description": "Front"},
+  {"id": "topbar.btnBack","type": "WebElement","by": "name","expr": "canvasToolbar.btnViewBack","description": "Back"},
+  {"id": "topbar.btnSnapshot","type": "WebElement","by": "xpath","expr": "canvasToolbar.btnTakeSnapshot","description": "Snapshot"},
+  {"id": "topbar.btnReset","type": "WebElement","by": "xpath","expr": "canvasToolbar.btnReset","description": "Reset"},
+
+
+  {"id": "gallery.title","type": "WebElement","by": "xpath","expr": "//h5[contains(@class,'MuiTypography-gutterBottom')]/b","description": "Gallery Title"},
+  {"id": "gallery.delete","type": "WebElement","by": "xpath","expr": "//button[@title='Delete']","description": "Delete"},
+
+  {"id": "display.title","type": "WebElement","by": "xpath","expr": "//h5[contains(@class,'MuiTypography-gutterBottom')]/b","description": "display Title"},
+
+  {"id": "display.dentalArch","type": "WebElement","by": "xpath","expr": "//h5[text()='Dental Arch']","description": "Dental Arch in display page"},
+  {"id": "display.dentalArchCount","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div","description": "Dental Arch in display page"},
+  {"id": "display.dentalArchNames","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div//h6[not(@name)]","description": "display Mandibular or maxillary name"},
+  {"id": "display.dentalArchSlider","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div[?]//span[contains(@class,'MuiSlider-track')]","description": "display Mandibular or maxillary Slider"},
+  {"id": "display.dentalArchData","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div[?]//h6[@name='transparency-value']","description": "display Mandibular or maxillary transparent data"},
+  {"id": "display.dentalArchShow","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div[?]//button[@name='visible-button']","description": "display Mandibular or maxillary button show or hide "},
+
+  {"id": "display.buccalBite","type": "WebElement","by": "xpath","expr": "//h5[text()='Buccal Bite']","description": "Buccal Bite in display page"},
+  {"id": "display.buccalBiteCount","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div","description": "Buccal Bite in display page"},
+  {"id": "display.buccalBiteNames","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div//h6[not(@name)]","description": "display page Buccal Bite Name"},
+  {"id": "display.buccalBiteRadioStatus","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//input[@name='radio-button']","description": "Buccal Bite Radio Status in display page"},
+  {"id": "display.buccalBiteRadio","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//span[input/@name='radio-button']","description": "Buccal Bite Radio  in display page"},
+
+  {"id": "display.buccalBiteSlider","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//span[contains(@class,'MuiSlider-track')]","description": "display buccalBite Slider"},
+  {"id": "display.buccalBiteData","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//h6[@name='transparency-value']","description": "display buccalBite transparent data"},
+  {"id": "display.buccalBiteShow","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//button[@name='visible-button']","description": "display buccalBite Slider button show or hide "},
+
+  {"id": "orientationAdjustment.title","type": "WebElement","by": "xpath","expr": "//h5[contains(@class,'MuiTypography-gutterBottom')]/b","description": "Orientation Adjustment Title"},
+  {"id": "orientationAdjustment.occlusionPlane","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[1]/div[h6/text()='Show Occlusion Plane']/following-sibling::div[1]","description": "orientationAdjustment Occlusion Plane"},
+  {"id": "orientationAdjustment.occlusionPlaneStatus","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[1]/div[h6/text()='Show Occlusion Plane']/following-sibling::div[1]/span/span[contains(@class,'Mui-checked')]","description": "orientationAdjustment Occlusion Plane Status"},
+
+  {"id": "orientationAdjustment.rotationOperate","type": "WebElement","by": "xpath","expr": "//div[h6/text()='?']/following-sibling::div[?]/button","description": "Orientation Adjustment Angle X Y Z Increase Decrease Reset"},
+  {"id": "orientationAdjustment.rotationAngle","type": "WebElement","by": "xpath","expr": "//div[h6/text()='?']/following-sibling::div[?]//input","description": "Orientation Adjustment Angle X Y Z Angle value"},
+  {"id": "orientationAdjustment.movementOperate","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[7]/div[?]/button","description": "Orientation Adjustment distance Z Increase Decrease Reset"},
+  {"id": "orientationAdjustment.movementDistance","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[7]/div[2]//input","description": "Orientation Adjustment distance Z distance value"},
+
+  {"id": "orientationAdjustment.rotationStep","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[2]/div[h6/text()='Rotation Step']/following-sibling::div[1]","description": "orientationAdjustment Rotation Step"},
+  {"id": "orientationAdjustment.rotationStepUl","type": "WebElement","by": "xpath","expr": "//ul[@role='listbox'][@aria-labelledby='demo-simple-select-filled-label']","description": "orientationAdjustment Rotation Step list"},
+  {"id": "orientationAdjustment.movementStep","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[6]/div[h6/text()='Movement Step']/following-sibling::div[1]","description": "orientationAdjustment Movement Step"},
+  {"id": "orientationAdjustment.movementStepUl","type": "WebElement","by": "xpath","expr": "//ul[@role='listbox'][@aria-labelledby='demo-simple-select-filled-label']","description": "orientationAdjustment Movement Step list"},
+  {"id": "orientationAdjustment.resetAll","type": "WebElement","by": "xpath","expr": "//button[span/text()='Reset All Adjustments']","description": "orientationAdjustment Reset All Adjustments "}
+
+
+]
