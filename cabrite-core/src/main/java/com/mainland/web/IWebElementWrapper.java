@@ -23,5 +23,6 @@ public interface IWebElementWrapper {
     void mouse_move(int xStart, int yStart, int xOffset, int yOffset);
     void mouse_click(int x, int y);
     void selectByVisibleText(String value);
+    void selectByValue(String value);
     Boolean elementExists();
 }

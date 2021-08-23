@@ -24,6 +24,8 @@ public class TestManager extends BaseTest {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private IWebDriverWrapper webDriverWrapper;
 
+
+
     @Parameters({"browser","url","importFile","expectationFile"})
     @BeforeClass(groups={"smoke","function_test"})
     public void beforeclass(ITestContext context, @Optional("chrome") String browser, @Optional("http://localhost:3000/") String url, @Optional("http://localhost:3000/") String importFile, @Optional("http://localhost:3000/") String expectationFile){
@@ -71,6 +73,9 @@ public class TestManager extends BaseTest {
     }
     public IWebDriverWrapper getWebDriverWrapper() {
         return webDriverWrapper;
+    }
+    public MeshViewPage getMeshViewPage(){
+       return new MeshViewPage(getWebDriverWrapper());
     }
 
 

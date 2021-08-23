@@ -11,6 +11,7 @@
   {"id": "leftbar.gallery","type": "WebElement","by": "name","expr": "toolbar.btnGallery","description": "Gallery"},
   {"id": "leftbar.imageInfo","type": "WebElement","by": "name","expr": "toolbar.btnImageInfo","description": "Image Information"},
   {"id": "leftbar.about","type": "WebElement","by": "name","expr": "toolbar.btnInfo","description": "About"},
+  {"id": "leftbar.export","type": "WebElement","by": "name","expr": "toolbar.btnExport","description": "Export"},
 
   {"id": "topbar.btn","type": "WebElement","by": "name","expr": "canvasToolbar.btn?","description": "topbar buttons"},
   {"id": "topbar.btnFront","type": "WebElement","by": "name","expr": "canvasToolbar.btnViewFront","description": "Front"},
@@ -26,9 +27,9 @@
 
   {"id": "display.dentalArch","type": "WebElement","by": "xpath","expr": "//h5[text()='Dental Arch']","description": "Dental Arch in display page"},
   {"id": "display.dentalArchCount","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div","description": "Dental Arch in display page"},
-  {"id": "display.dentalArchNames","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div//h6[not(@name)]","description": "display Mandibular or maxillary name"},
+  {"id": "display.dentalArchNames","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div//h6[not(@id)]","description": "display Mandibular or maxillary name"},
   {"id": "display.dentalArchSlider","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div[?]//span[contains(@class,'MuiSlider-track')]","description": "display Mandibular or maxillary Slider"},
-  {"id": "display.dentalArchData","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div[?]//h6[@name='transparency-value']","description": "display Mandibular or maxillary transparent data"},
+  {"id": "display.dentalArchData","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div[?]//h6[@id='transparency-value']","description": "display Mandibular or maxillary transparent data"},
   {"id": "display.dentalArchShow","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Dental Arch']/following-sibling::div[1]/div[?]//button[@name='visible-button']","description": "display Mandibular or maxillary button show or hide "},
 
   {"id": "display.buccalBite","type": "WebElement","by": "xpath","expr": "//h5[text()='Buccal Bite']","description": "Buccal Bite in display page"},
@@ -38,7 +39,7 @@
   {"id": "display.buccalBiteRadio","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//span[input/@name='radio-button']","description": "Buccal Bite Radio  in display page"},
 
   {"id": "display.buccalBiteSlider","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//span[contains(@class,'MuiSlider-track')]","description": "display buccalBite Slider"},
-  {"id": "display.buccalBiteData","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//h6[@name='transparency-value']","description": "display buccalBite transparent data"},
+  {"id": "display.buccalBiteData","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//h6[@id='transparency-value']","description": "display buccalBite transparent data"},
   {"id": "display.buccalBiteShow","type": "WebElement","by": "xpath","expr": "//div[h5/text()='Buccal Bite']/following-sibling::div[1]/div[?]//button[@name='visible-button']","description": "display buccalBite Slider button show or hide "},
 
   {"id": "orientationAdjustment.title","type": "WebElement","by": "xpath","expr": "//h5[contains(@class,'MuiTypography-gutterBottom')]/b","description": "Orientation Adjustment Title"},
@@ -54,7 +55,16 @@
   {"id": "orientationAdjustment.rotationStepUl","type": "WebElement","by": "xpath","expr": "//ul[@role='listbox'][@aria-labelledby='demo-simple-select-filled-label']","description": "orientationAdjustment Rotation Step list"},
   {"id": "orientationAdjustment.movementStep","type": "WebElement","by": "xpath","expr": "//div[h5/b/text()='Orientation Adjustment']/following-sibling::div[6]/div[h6/text()='Movement Step']/following-sibling::div[1]","description": "orientationAdjustment Movement Step"},
   {"id": "orientationAdjustment.movementStepUl","type": "WebElement","by": "xpath","expr": "//ul[@role='listbox'][@aria-labelledby='demo-simple-select-filled-label']","description": "orientationAdjustment Movement Step list"},
-  {"id": "orientationAdjustment.resetAll","type": "WebElement","by": "xpath","expr": "//button[span/text()='Reset All Adjustments']","description": "orientationAdjustment Reset All Adjustments "}
+  {"id": "orientationAdjustment.resetAll","type": "WebElement","by": "xpath","expr": "//button[span/text()='Reset All Adjustments']","description": "orientationAdjustment Reset All Adjustments "},
 
-
+  {"id": "export.title","type": "WebElement","by": "xpath","expr": "//div[@class='MuiDialogTitle-root']/h2","description": "export dialog title"},
+  {"id": "export.selectedFormat","type": "WebElement","by": "xpath","expr": "//span/input[@name='radio-button'][@checked]","description": "export dialog export format default value"},
+  {"id": "export.format","type": "WebElement","by": "xpath","expr": "//span[input/@value='?']","description": "export dialog export format PLY or STL"},
+  {"id": "export.presetsOrientation","type": "WebElement","by": "xpath","expr": "//span[input/@name='enableOrientationOptions']","description": "export dialog export with Orientation presets"},
+  {"id": "export.orientationRadio","type": "WebElement","by": "xpath","expr": "//div[@aria-label='selectOrientation']//tr[?]/td[1]/label/span","description": "select Orientation on export dialog"},
+  {"id": "export.orientationValue","type": "WebElement","by": "xpath","expr": "//div[@aria-label='selectOrientation']//tr[?]/td[1]//span/input","description": "label of Orientation on export dialog"},
+  {"id": "export.dentalWings","type": "WebElement","by": "xpath","expr": "//button[span/text()='Reset All Adjustments']","description": "export dialog export with Orientation presets Dental Wings"},
+  {"id": "export.cancel","type": "WebElement","by": "xpath","expr": "//button[span/text()='Reset All Adjustments']","description": "export dialog cancel button"},
+  {"id": "export.export","type": "WebElement","by": "xpath","expr": "//div[@role='dialog']//button[span/text()='Export']","description": "export dialog export button"},
+  {"id": "export.close","type": "WebElement","by": "xpath","expr": "//button[span/text()='Reset All Adjustments']","description": "export dialog close button"}
 ]

@@ -25,7 +25,7 @@ public class OrientationAdjustmentTest  extends TestManager {
         String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
         String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
         String screenWithinCase=caseFolder+methodName;
-        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        MeshViewPage meshViewPage=getMeshViewPage();
         if(meshViewPage.isThePage()){
 
             uploadDCM(meshViewPage,importFile);
@@ -71,7 +71,7 @@ public class OrientationAdjustmentTest  extends TestManager {
         String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
         String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
         String screenWithinCase=caseFolder+methodName;
-        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        MeshViewPage meshViewPage=getMeshViewPage();
         if(meshViewPage.isThePage()){
 
             uploadDCM(meshViewPage,importFile);
@@ -123,7 +123,7 @@ public class OrientationAdjustmentTest  extends TestManager {
         String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
         String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
         String screenWithinCase=caseFolder+methodName;
-        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        MeshViewPage meshViewPage=getMeshViewPage();
         if(meshViewPage.isThePage()){
 
             uploadDCM(meshViewPage,importFile);
@@ -171,7 +171,7 @@ public class OrientationAdjustmentTest  extends TestManager {
         String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
         String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
         String screenWithinCase=caseFolder+methodName;
-        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        MeshViewPage meshViewPage=getMeshViewPage();
         if(meshViewPage.isThePage()){
 
             uploadDCM(meshViewPage,importFile);
@@ -219,7 +219,7 @@ public class OrientationAdjustmentTest  extends TestManager {
         String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
         String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
         String screenWithinCase=caseFolder+methodName;
-        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        MeshViewPage meshViewPage=getMeshViewPage();
         if(meshViewPage.isThePage()){
 
             uploadDCM(meshViewPage,importFile);
@@ -267,7 +267,7 @@ public class OrientationAdjustmentTest  extends TestManager {
         String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
         String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
         String screenWithinCase=caseFolder+methodName;
-        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        MeshViewPage meshViewPage=getMeshViewPage();
         if(meshViewPage.isThePage()){
 
             uploadDCM(meshViewPage,importFile);

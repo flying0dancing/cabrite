@@ -213,4 +213,11 @@ public class WebElementWrapper implements IWebElementWrapper {
         IWebSelectWrapper webSelectWrapper=new WebSelectWrapper(webDriverWrapper,locator);
         webSelectWrapper.selectByVisibleText(value);
     }
+
+    @Override
+    public void selectByValue(String value) {
+        IWebSelectWrapper webSelectWrapper=new WebSelectWrapper(webDriverWrapper,locator);
+        webSelectWrapper.selectByValue(value);
+    }
+
 }

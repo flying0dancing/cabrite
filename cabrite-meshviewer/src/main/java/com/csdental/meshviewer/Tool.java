@@ -253,6 +253,7 @@ public class Tool extends BasePage implements ITool {
         logger.info("click Gallery button on left bar");
         IWebElementWrapper elt=element(_leftbar, ToolBar.GALLERY.getBtnText());
         elt.click();
+        loading();
         return new GalleryPage(webDriverWrapper);
     }
 
@@ -261,6 +262,7 @@ public class Tool extends BasePage implements ITool {
         logger.info("click Image Information button on left bar");
         IWebElementWrapper elt=element(_leftbar, ToolBar.IMAGEINFORMATION.getBtnText());//toolbar.btnImageInfo
         elt.click();
+        loading();
         return new ImageInformation(webDriverWrapper);
     }
 
@@ -269,6 +271,7 @@ public class Tool extends BasePage implements ITool {
         logger.info("click About button on left bar");
         IWebElementWrapper elt=element(_leftbar, ToolBar.ABOUT.getBtnText());//toolbar.btnInfo
         elt.click();
+        loading();
         return new AboutDialog(webDriverWrapper);
     }
 
@@ -276,7 +279,9 @@ public class Tool extends BasePage implements ITool {
     public ExportPage clickExport() {
         logger.info("click Export button on left bar");
         IWebElementWrapper elt=element(_leftbar, ToolBar.EXPORT.getBtnText());//toolbar.btnExport
+        loading();
         elt.click();
+        loading();
         return new ExportPage(webDriverWrapper);
     }
 

@@ -27,7 +27,7 @@ public class DisplayTest extends TestManager {
         String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
         String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
         String screenWithinCase=caseFolder+methodName;
-        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        MeshViewPage meshViewPage=getMeshViewPage();
         if(meshViewPage.isThePage()){
             uploadDCM(meshViewPage,importFile);
             DisplayPage displayPage=meshViewPage.clickDisplay();
@@ -62,7 +62,7 @@ public class DisplayTest extends TestManager {
         String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
         String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
         String screenWithinCase=caseFolder+methodName;
-        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        MeshViewPage meshViewPage=getMeshViewPage();
         if(meshViewPage.isThePage()){
             uploadDCM(meshViewPage,importFile);
             DisplayPage displayPage=meshViewPage.clickDisplay();
@@ -126,7 +126,7 @@ public class DisplayTest extends TestManager {
         String expectationFile=context.getCurrentXmlTest().getParameter("expectationFile");
         String methodName=Thread.currentThread().getStackTrace()[1].getMethodName();
         String screenWithinCase=caseFolder+methodName;
-        MeshViewPage meshViewPage=new MeshViewPage(getWebDriverWrapper());
+        MeshViewPage meshViewPage=getMeshViewPage();
         if(meshViewPage.isThePage()){
             uploadDCM(meshViewPage,importFile);
             DisplayPage displayPage=meshViewPage.clickDisplay();
